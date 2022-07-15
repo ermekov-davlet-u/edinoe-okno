@@ -1,0 +1,136 @@
+html {
+  font-family: "Times New Roman", Times, serif !important;
+  margin: 15px;
+  background-color: rgb(240, 240, 240);
+}
+.head {
+  padding: 20px;
+}
+.header {
+  color: #f09502;
+  font-weight: 700;
+  font-size: 32px;
+}
+form {
+  display: inline-block;
+}
+.link,
+.logout {
+  text-decoration: none;
+  padding: 5px;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  float: right;
+  font-weight: 500;
+  font-size: 14px;
+  margin: 5px;
+}
+.logout {
+  background-color: #d33;
+}
+.link {
+  background-color: #004ea0;
+}
+.input {
+  width: 300px;
+  padding: 5px;
+  font-size: 14px;
+  /* border-radius: 5px;
+  border: 1px solid grey; */
+}
+.submit {
+  text-decoration: none;
+  padding: 10px;
+  background-color: #f09502;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.header,
+form {
+  display: inline;
+  margin: 0 50px 0 20px;
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
+}
+table,
+tr,
+td,
+th {
+  border-collapse: collapse;
+  padding: 5px;
+}
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+table tr td:nth-child(1) {
+  text-align: left;
+}
+table tr td:nth-child(4) {
+  border: none;
+  padding: 0 0 0 5px;
+  /* border: 1px solid #dddddd; */
+}
+
+table tr td:nth-child(4) > a {
+  text-decoration: none;
+  padding: 5px;
+  background-color: #f09502;
+  color: white;
+  border-radius: 5px;
+  border: none;
+}
+
+.message {
+  background-color: #fee7e6;
+  border: 1px solid #d33;
+  box-sizing: border-box;
+
+  text-align: center;
+  padding: 5px;
+  margin-bottom: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 300px;
+}
+
+.pagination {
+  text-align: center;
+}
+
+td input {
+  width: 95%;
+}
+.translate {
+  width: 100%;
+}
+textarea {
+  resize: vertical;
+}
+
+.btn span.icon {
+  background: url(../img/icons/save.png) no-repeat;
+  float: left;
+  width: 30px;
+  height: 30px;
+  background-size: contain;
+}
+.btn {
+  border: none;
+  cursor: pointer;
+}

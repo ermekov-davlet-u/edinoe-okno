@@ -1,0 +1,21 @@
+{
+  "auth": {
+    "inValidFormat": "Туура эмес формат",
+    "welcome": "Кош келиңиз!",
+    "inValidAuth": "Туура эмес логин же сырсөз",
+    "failLoginError": "Кирүүдо туура эмес, {{error}}",
+    "failLogoutError": "Чыгууда туура эмес, {{error}}",
+    "loggedOut": "Сиз системадан ийгиликтүү чыктыңыз",
+    "inputAuth": "Логин жана сырсөздү жазыңыз!"
+  },
+  "token": {
+    "noAuth": "Сиздин авторизация жок"
+  },
+  "errorQuery": "Туура эмес, {{error}}",
+  "inValidFormat": "Туура эмес формат",
+  "selector": {
+    "yearDefaultOK": "Азыркы жыл",
+    "yearListOK": "Жылдар",
+    "kafedraListOK": "Кафедралар"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "auth": {
+    "inValidFormat": "Неверный формат данных",
+    "welcome": "Добро пожаловать!",
+    "inValidAuth": "Неверный логин или пароль!",
+    "failLoginError": "Не удалось войти, {{error}}",
+    "failLogoutError": "Не удалось выйти, {{error}}",
+    "loggedOut": "Вы вышли!",
+    "inputAuth": "Введите логин и пароль!"
+  },
+  "token": {
+    "noAuth": "Не авторизован!"
+  },
+  "inValidFormat": "Неверный формат данных",
+  "errorQuery": "Неправильный запрос, {{error}}",
+  "selector": {
+    "yearDefaultOK": "Текущий год",
+    "yearListOK": "Список годов",
+    "kafedraListOK": "Список кафедр"
+  }
+}

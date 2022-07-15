@@ -1,0 +1,1003 @@
+<link rel="stylesheet" href="/css/context.css" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/print.css" media="print" />
+
+<style>
+    table,
+    th,
+    td {
+        line-height: 9.5px;
+    }
+</style>
+
+<div class='D_main_header'>
+    <header>
+        <div class='SpravkaObOkonch_input'>
+            <input type="text" id="registerInput">
+            <button class="btnChange" id="registerChange">
+                <p>Изменить Регистрационный номер</p>
+            </button>
+        </div>
+        <h2>Академическая справка</h2>
+        <div class="none" style="padding:20px">
+            {{!-- 
+             --}}
+            <button onclick="myPrintFunction()" class="btnPrint">Печать</button>
+        </div>
+    </header>
+</div>
+
+
+<div class="none">
+    <br>
+    <br>
+</div>
+
+<div id="first" class="A4">
+    <div class="border main-grid">
+        <div class="p1 text">
+            <p class="noprint" style="position: absolute; top: 36px; left: 39px">
+                Аты, ата теги:
+            </p>
+
+            <span class="print" style="position: absolute; top: 52px; left: 39px;text-align:center;width:315px;">
+                {{ data.name }}
+            </span>
+            <span style="position: absolute; top: 56px; left: 39px" class="dots">
+                ....................................................................................
+            </span>
+
+            <p style="position: absolute; top: 77px; left: 39px">Туулган жылы:</p>
+            <span class="print" style="position: absolute; top: 73px; left: 133px;text-align:center;width:215px;">
+                {{ data.birth_date }} жыл
+            </span>
+            <span style="position: absolute; top: 75px; left: 133px" class="dots">
+                ..........................................................
+            </span>
+
+            <p style="position: absolute; top: 118px; left: 39px">
+                Билим жөнүндөгү баштапкы документи:
+            </p>
+            <span class="print" style="position: absolute; top: 133px; left: 39px;text-align:center;width:315px;">
+                {{ data.doc_kg }}
+            </span>
+            <span style="position: absolute; top: 135px; left: 39px" class="dots">
+                ....................................................................................
+            </span>
+            <span class="print" style="position: absolute; top: 153px; left: 39px;text-align:center;width:315px;">
+                {{ data.graduated_date }} жылы берилген
+            </span>
+            <span style="position: absolute; top: 155px; left: 39px" class="dots">
+                ....................................................................................
+            </span>
+
+            <p style="position: absolute; top: 197px; left: 39px">
+                Кирүү сыноолору:
+            </p>
+            <span class="print" style="position: absolute; top: 193px; left: 145px">
+                ɵттү
+            </span>
+            <span style="position: absolute; top: 195px; left: 145px" class="dots">
+                .......................................................
+            </span>
+
+            <p style="position: absolute; top: 237px; left: 39px">
+                Окууга өткөн:
+            </p>
+            <span class="print" style="position: absolute; top: 233px; left: 120px;text-align:center;width:215px;">
+                {{ data.come_date }} жыл
+            </span>
+            <span style="position: absolute; top: 235px; left: 120px" class="dots">
+                ..............................................................
+            </span>
+            <span class="print" style="position: absolute; top: 253px; left: 39px;text-align:center;width:315px;">
+                Буйрук № {{ data.come_reg_date }}
+            </span>
+            <span style="position: absolute; top: 255px; left: 39px" class="dots">
+                ....................................................................................
+            </span>
+
+            <p style="position: absolute; top: 297px; left: 39px">
+                Окууну аяктады:
+            </p>
+            <span class="print" style="position: absolute; top: 293px; left: 140px;text-align:center;width:150px;">
+                {{ data.leave_year }} жыл
+            </span>
+            <span style="position: absolute; top: 295px; left: 140px"
+                class="dots">........................................................</span>
+            <span class="print" style="position: absolute; top: 313px; left: 39px;text-align:center;width:315px;">
+                Буйрук № {{ data.leave_reg }}, {{ data.leave_date }}, {{ data.id_rate }}-курстан
+            </span>
+            <span style="position: absolute; top: 315px; left: 39px" class="dots">
+                ....................................................................................
+            </span>
+
+            <p style="position: absolute; top: 357px; left: 39px">
+                Окууну күндүзгү түрүндөгү нормативдик мөөнөт:
+            </p>
+            <span class="print" style="position: absolute; top: 373px; left: 39px;text-align:center;width:315px;">
+                {{ data.max_rate_kg }}
+            </span>
+            <span style="position: absolute; top: 375px; left: 39px" class="dots">
+                ...................................................................................
+            </span>
+
+            <p style="position: absolute; top: 417px; left: 39px">
+                Адистиги / багыты:
+            </p>
+            <span class="print" style="position: absolute; top: 413px; left: 150px;  width:200px;">
+                {{ wordSplit data.direction_kg 0 29 51}}
+            </span>
+            <span style="position: absolute; top: 415px; left: 150px" class="dots">
+                ......................................................
+            </span>
+            <span class="print" style="position: absolute; top: 433px; left: 38px;  width:314px;">
+                {{ wordSplit data.direction_kg 1 29 51}}
+            </span>
+            <span style="position: absolute; top: 435px; left: 39px" class="dots">
+                ....................................................................................
+            </span>
+            <span class="print" style="position: absolute; top: 448px; left: 39px; width:314px;">
+                {{ wordSplit data.direction_kg 2 29 51}}
+            </span>
+            <span class="print" style="position: absolute; top: 460px; left: 39px; width:314px;">
+                {{ wordSplit data.direction_kg 3 29 51}}
+            </span>
+
+            <p style=" position: absolute; top: 477px; left: 39px">
+                Адистештирүү / профили:
+            </p>
+            <span class="print" style="position: absolute; top: 473px; left: 187px; text-align:left;width:165px;">
+                {{ wordSplit data.special_kg 0 26 51}}
+            </span>
+            <span style="position: absolute; top: 475px; left: 187px" class="dots">
+                ............................................
+            </span>
+            <span class="print" style="position: absolute; top: 493px; left: 39px; width:314px;">
+                {{ wordSplit data.special_kg 1 26 51}}
+            </span>
+            <span style="position: absolute; top: 495px; left: 39px" class="dots">
+                ....................................................................................
+            </span>
+            <span class="print" style="position: absolute; top: 508px; left: 39px;width:314px;">
+                {{ wordSplit data.special_kg 2 26 51}}
+            </span>
+            <span class="print" style="position: absolute; top: 520px; left: 39px;width:314px;">
+                {{ wordSplit data.special_kg 3 26 51}}
+            </span>
+            <p style="position: absolute; top: 537px; left: 39px">
+                Жыйынтыктоочу мамлекеттик экзамендер:
+            </p>
+            <span style="position: absolute; top: 535px; left: 291px" class="dots">...............</span>
+            <p style="
+              position: absolute;
+              top: 561px;
+              left: 39px;
+              font-style: italic;
+            ">
+                1.
+            </p>
+            <span class="print" style="position: absolute; top: 552px; left: 50px;width:240px;">
+                {{ data.exam_one_kg }}
+            </span>
+            <span class="print" style="position: absolute; top: 558px; left: 291px;width:60px;">
+                {{ data.exam_one_mark_kg }}
+            </span>
+            <span style="position: absolute; top: 559px; left: 291px" class="dots dots-right">...............</span>
+            <p style="
+              position: absolute;
+              top: 581px;
+              left: 39px;
+              font-style: italic;
+            ">
+                2.
+            </p>
+            <span class="print" style="position: absolute; top: 580px; left: 50px;width:240px;">
+                {{ data.exam_two_kg }}
+            </span>
+
+            <span class="print" style="position: absolute; top: 578px; left: 291px;width:60px;">
+                {{ data.exam_two_mark_kg }}
+            </span>
+            <span style="position: absolute; top: 579px; left: 291px" class="dots dots-right">...............</span>
+            <p style="position: absolute; top: 617px; left: 39px">
+                Бүтүрүү квалификациялык <br />
+                ишинин аткарылышы:
+            </p>
+            <span style="position: absolute; top: 629px; left: 233px"
+                class="dots dots-right">...............................
+            </span>
+            <div style="position: absolute; top: 665px; left: 39px" class="marked__line">
+                ________________________
+            </div>
+            <div style="position: absolute; top: 685px; left: 39px" class="text__marked">
+                <p>
+                    Бул документ толук эмес билим алгандыгынын негизинде,
+                    профессионалдык ишмердүүлүккө жана окуу жайына окууга укук берет.
+                </p>
+            </div>
+        </div>
+
+        <div class="p2 text">
+            <span style="position: absolute; top: 36px; left: 380px; width: 160px" class="kyrgyz">Кыргыз
+                Республикасы</span>
+            <img style="position: absolute; top: 70px; left: 385px; width: 150px" src="/img/emblem.png" alt="Герб"
+                srcset="" />
+            <span class="print" style="position: absolute; top: 236px; left: 365px;width:188px; text-align:center;">
+                {{ wordSplit data.university_kg 0 32 32}}
+            </span>
+            <span style="position: absolute; top: 237px; left: 365px" class="dots">
+                ...................................................
+            </span>
+            <span class="print" style="position: absolute; top: 255px; left: 365px;width:188px;text-align:center;">
+                {{ wordSplit data.university_kg 1 33 33}}
+            </span>
+            <span style="position: absolute; top: 256px; left: 365px" class="dots">
+                ...................................................
+            </span>
+            <span class="print" style="position: absolute; top: 276px; left: 365px;width:188px;text-align:center;">
+                {{ wordSplit data.university_kg 2 33 33}}
+            </span>
+            <span style="position: absolute; top: 277px; left: 365px" class="dots">
+                ...................................................
+            </span>
+            <span class="print" style="position: absolute; top: 293px; left: 365px;width:188px;text-align:center;">
+                {{ wordSplit data.university_kg 3 33 33}}
+            </span>
+            <div style="position: absolute; top: 312px; left: 385px; width: 150px" class="title">
+                АКАДЕМИЯЛЫК МААЛЫМАТ <br />
+                ВПО № 00000000
+            </div>
+            <p style="position: absolute; top: 379px; left: 415px">
+                Каттоо номери:
+            </p>
+            <span id="register" style="position: absolute; top: 394px; left: 425px;text-align:center;width:65px;"
+                class="print">
+
+            </span>
+            <span style="position: absolute; top: 398px; left: 425px" class="dots">
+                ..................
+            </span>
+
+            <p style="position: absolute; top: 420px; left: 408px">
+                Берилген датасы:
+            </p>
+            <span class="print" style="position: absolute; top: 437px; left: 365px;width:188px; text-align:center;">
+                {{ data.printed }}
+            </span>
+            <span style="position: absolute; top: 438px; left: 365px" class="dots">
+                ...................................................
+            </span>
+            <span style="position: absolute; top: 478px; left: 365px" class="dots">
+                ...................................................
+            </span>
+            <span style="position: absolute; top: 476px; left: 365px;width:188px; text-align:center;">
+                {{ data.akadem_kg }}
+            </span>
+            <span style="position: absolute; top: 498px; left: 365px" class="dots">
+                ...................................................
+            </span>
+            <span class="print" style="position: absolute; top: 517px; left: 365px;width:188px; text-align:center;">
+                буйрук {{ data.leave_reg }}
+            </span>
+            <span style="position: absolute; top: 518px; left: 365px" class="dots">
+                ...................................................
+            </span>
+            <span class="print" style="position: absolute; top: 537px; left: 365px;width:188px; text-align:center;">
+                {{ data.leave_date }} ж.
+            </span>
+            <span style="position: absolute; top: 538px; left: 365px" class="dots">
+                ...................................................
+            </span>
+            <p style="position: absolute; top: 559px; left: 365px">
+                Документ 2 баракта болот.
+            </p>
+            <p style="position: absolute; top: 615px; left: 365px" class="text-rektor">
+                Ректор
+            </p>
+            <p style="position: absolute; top: 645px; left: 365px" class="text-rektor">
+                Декан
+            </p>
+
+            <p style="
+              position: absolute;
+              top: 718px;
+              left: 365px;
+              font-style: normal;
+              font-weight: bold;
+            ">
+                М.О.
+            </p>
+        </div>
+
+        <div class="p3 text">
+            <p style="position: absolute; top: 36px; left: 568px">
+                Фамилия, имя, отчество:
+            </p>
+
+            <span class="print" style="position: absolute; top: 55px; left: 568px;text-align:center;width:315px;">
+                {{ data.name }}
+            </span>
+            <span style="position: absolute; top: 56px; left: 568px" class="dots">
+                ....................................................................................
+            </span>
+
+            <p style="position: absolute; top: 77px; left: 568px">
+                Дата рождения:
+            </p>
+            <span class="print" style="position: absolute; top: 74px; left: 662px;text-align:center;width:215px;">
+                {{ data.birth_date }} год
+            </span>
+            <span style="position: absolute; top: 75px; left: 662px" class="dots">
+                ..........................................................
+            </span>
+
+            <p style="position: absolute; top: 118px; left: 568px">
+                Предыдущий документ об образовании:
+            </p>
+            <span class="print" style="position: absolute; top: 134px; left: 568px;text-align:center;width:315px;">
+                {{ data.doc }} выданный
+            </span>
+            <span style="position: absolute; top: 135px; left: 568px" class="dots">
+                ....................................................................................
+            </span>
+            <span class="print" style="position: absolute; top: 154px; left: 568px;text-align:center;width:315px;">
+                {{ data.graduated_date }} году
+            </span>
+            <span style="position: absolute; top: 155px; left: 568px" class="dots">
+                ....................................................................................
+            </span>
+
+            <p style="position: absolute; top: 197px; left: 568px">
+                Вступительные испытания:
+            </p>
+            <span class="print" style="position: absolute; top: 193px; left: 730px">
+                прошел(а)
+            </span>
+            <span style="position: absolute; top: 194px; left: 730px" class="dots">
+                ........................................
+            </span>
+
+            <p style="position: absolute; top: 237px; left: 568px">
+                Поступил(а):
+            </p>
+            <span style="position: absolute; top: 234px; left: 649px;text-align:center;width:215px;" class="print">
+                {{ data.come_date }} году
+            </span>
+            <span style="position: absolute; top: 235px; left: 649px" class="dots">
+                ..............................................................
+            </span>
+            <span style="position: absolute; top: 254px; left: 568px;text-align:center;width:315px;" class="print">
+                Приказ № {{ data.come_reg_date }}
+            </span>
+            <span style="position: absolute; top: 255px; left: 568px" class="dots">
+                ....................................................................................
+            </span>
+
+            <p style="position: absolute; top: 297px; left: 568px">
+                Завершил(а) обучение в:
+            </p>
+            <span style="position: absolute; top: 294px; left: 711px;text-align:center;width:150px;" class="print">
+                {{ data.leave_year }} год
+            </span>
+            <span style="position: absolute; top: 295px; left: 711px"
+                class="dots">.............................................</span>
+            <span style="position: absolute; top: 314px; left: 568px;text-align:center;width:315px;" class="print">
+                Приказ № {{ data.leave_reg }} {{ data.leave_date }}, {{#ifCond data.id_rate '==' 2}} со {{ else }} c
+                {{/ifCond}} {{ data.id_rate }} курса
+            </span>
+            <span style="position: absolute; top: 315px; left: 568px" class="dots">
+                ....................................................................................
+            </span>
+
+            <p style="position: absolute; top: 357px; left: 568px">
+                Нормативный срок обучения по очной форме:
+            </p>
+            <span style="position: absolute; top: 374px; left: 568px;text-align:center;width:315px;" class="print">
+                {{ data.max_rate }}
+            </span>
+            <span style="position: absolute; top: 375px; left: 568px" class="dots">
+                ...................................................................................
+            </span>
+
+            <p style="position: absolute; top: 417px; left: 568px">
+                Специальность / направление:
+            </p>
+            <span style="position: absolute; top: 413px; left: 745px" class="print">
+                {{ wordSplit data.direction 0 23 51}}
+            </span>
+            <span style="position: absolute; top: 415px; left: 745px" class="dots">
+                ....................................
+            </span>
+            <span style="position: absolute; top: 433px; left: 568px" class="print">
+                {{ wordSplit data.direction 1 23 51}}
+            </span>
+            <span style="position: absolute; top: 435px; left: 568px" class="dots">
+                ....................................................................................
+            </span>
+            <span class="print" style="position: absolute; top: 448px; left: 568px; width:314px;">
+                {{ wordSplit data.direction 2 23 51}}
+            </span>
+            <span class="print" style="position: absolute; top: 460px; left: 568px; width:314px;">
+                {{ wordSplit data.direction 3 23 51}}
+            </span>
+
+            <p style="position: absolute; top: 477px; left: 568px">
+                Специализация / профиль:
+            </p>
+            <span class="print" style="position: absolute; top: 473px; left: 723px; text-align:left;width:165px;">
+                {{ wordSplit data.special 0 25 51}}
+            </span>
+            <span style="position: absolute; top: 475px; left: 723px" class="dots">
+                ..........................................
+            </span>
+            <span class="print" style="position: absolute; top: 493px; left: 568px; width:314px;">
+                {{ wordSplit data.special 1 25 51}}
+            </span>
+            <span style="position: absolute; top: 495px; left: 568px" class="dots">
+                ....................................................................................
+            </span>
+            <span class="print" style="position: absolute; top: 508px; left: 568px;width:314px;">
+                {{ wordSplit data.special 2 25 51}}
+            </span>
+            <span class="print" style="position: absolute; top: 520px; left: 568px;width:314px;">
+                {{ wordSplit data.special 3 25 51}}
+            </span>
+
+            <p style="position: absolute; top: 537px; left: 568px">
+                Итоговые государственный экзамены:
+            </p>
+            <span style="position: absolute; top: 535px; left: 790px" class="dots">........................</span><br />
+            <p style="
+              position: absolute;
+              top: 561px;
+              left: 568px;
+              font-style: italic;
+            ">
+                1.
+            </p>
+            <span class="print" style="position: absolute; top: 552px; left: 579px;width:250px;">
+                {{ data.exam_one }}
+            </span>
+            <span class="print" style="position: absolute; top: 558px; left: 820px;width:60px;">
+                {{ data.exam_one_mark }}
+            </span>
+            <span style="position: absolute; top: 559px; left: 820px"
+                class="dots dots-right">...............</span><br />
+            <p style="
+              position: absolute;
+              top: 581px;
+              left: 568px;
+              font-style: italic;
+            ">
+                2.
+            </p>
+            <span class="print" style="position: absolute; top: 580px; left: 579px;width:240px;">
+                {{ data.exam_two }}
+            </span>
+            <span class="print" style="position: absolute; top: 578px; left: 820px;width:60px;">
+                {{ data.exam_two_mark }}
+            </span>
+            <span style="position: absolute; top: 579px; left: 820px" class="dots dots-right">...............</span>
+            <p style="position: absolute; top: 617px; left: 568px">
+                Выполнение и защита выпускной <br />
+                квалификационной работы:
+            </p>
+            <span style="position: absolute; top: 629px; left: 762px"
+                class="dots dots-right">...............................
+            </span>
+            <div style="position: absolute; top: 665px; left: 568px" class="marked__line">
+                ________________________
+            </div>
+            <div style="position: absolute; top: 685px; left: 568px" class="text__marked">
+                <p>
+                    Документ дает право на проффессиональную деятельность в
+                    соответствии с полученным неполным образованием и восстановление
+                    на обучение.
+                </p>
+            </div>
+        </div>
+
+        <div class="p4 text">
+            <span style="position: absolute; top: 36px; left: 900px; width: 190px" class="kyrgyz">Кыргызская
+                Республика</span>
+            <img style="position: absolute; top: 70px; left: 914px; width: 150px" src="/img/emblem.png" alt="Герб"
+                srcset="" />
+            <span class="print" style="position: absolute; top: 234px; left: 894px;width:188px; text-align:center;">
+                {{ wordSplit data.university 0 32 32}}
+            </span>
+            <span style="position: absolute; top: 237px; left: 894px" class="dots">
+                ...................................................
+            </span>
+            <span class="print" style="position: absolute; top: 253px; left: 894px;width:188px;text-align:center;">
+                {{ wordSplit data.university 1 33 33}}
+            </span>
+            <span style="position: absolute; top: 256px; left: 894px" class="dots">
+                ...................................................
+            </span>
+            <span class="print" style="position: absolute; top: 274px; left: 894px;width:188px;text-align:center;">
+                {{ wordSplit data.university 2 33 33}}
+            </span>
+            <span style="position: absolute; top: 277px; left: 894px" class="dots">
+                ...................................................
+            </span>
+            <span class="print" style="position: absolute; top: 291px; left: 894px;width:188px;text-align:center;">
+                {{ wordSplit data.university 3 33 33}}
+            </span>
+            <div style="position: absolute; top: 310px; left: 914px; width: 150px" class="title">
+                АКАДЕМИЧЕСКАЯ <br />
+                СПРАВКА <br />
+                ВПО № 00000000
+            </div>
+            <p style="position: absolute; top: 377px; left: 915px">
+                Регистрационный номер:
+            </p>
+            <span id="registerkg" style="position: absolute; top: 392px; left: 954px;text-align:center;width:65px;"
+                class="print">
+            </span>
+
+            <span style="position: absolute; top: 396px; left: 954px" class="dots">
+                ..................
+            </span>
+
+            <p style="position: absolute; top: 418px; left: 950px">
+                Дата выдачи:
+            </p>
+            <span class="print" style="position: absolute; top: 435px; left: 894px;width:188px; text-align:center;">
+                {{ data.printed }}
+            </span>
+            <span style="position: absolute; top: 436px; left: 894px" class="dots">
+                ...................................................
+            </span>
+            <p style="position: absolute; top: 478px; left: 894px">В связи с</p>
+            <span style="position: absolute; top: 474px; left: 953px;width:150px; text-align:center;">
+                {{ data.akadem }}
+            </span>
+            <span style="position: absolute; top: 476px; left: 950px" class="dots">
+                ...................................
+            </span>
+            <p style="position: absolute; top: 499px; left: 925px">
+                на основании приказа
+            </p>
+            <span class="print" style="position: absolute; top: 515px; left: 894px;width:188px; text-align:center;">
+                № {{ data.leave_reg }}
+            </span>
+            <span style="position: absolute; top: 516px; left: 894px" class="dots">
+                ...................................................
+            </span>
+            <span class="print" style="position: absolute; top: 535px; left: 894px;width:188px; text-align:center;">
+                {{ data.leave_date }} г.
+            </span>
+            <span style="position: absolute; top: 536px; left: 894px" class="dots">
+                ...................................................
+            </span>
+            <p style="position: absolute; top: 557px; left: 894px">
+                Документ содержит 2 листа.
+            </p>
+            <p style="position: absolute; top: 613px; left: 894px" class="text-rektor">
+                Ректор
+            </p>
+            <p style="position: absolute; top: 643px; left: 894px" class="text-rektor">
+                Декан
+            </p>
+
+            <p style="
+              position: absolute;
+              top: 716px;
+              left: 894px;
+              font-style: normal;
+              font-weight: bold;
+            ">
+                М.П.
+            </p>
+        </div>
+    </div>
+</div>
+
+{{#if list48}}
+<div class="none">
+    <br>
+    <br>
+    <br>
+</div>
+
+
+<div id="second" class="A4">
+    <ul class="border page2_border discipline-grid">
+        <li>
+            <p class="discipline-title" style="position: absolute; top: 32px; left: 37px">
+                ВПО № 00000000 академиялык справкасына тиркеме
+            </p>
+            <p class="discipline-text" style="position: absolute; top: 62px; left: 37px">
+                Окуу мезгилинде төмөнкү дисциплиналар боюнча зачет жана
+                жыйынтыктоочу сынактарды берди:
+            </p>
+
+            <table style="
+              width: 510px;
+              height: 646px;
+              position: absolute;
+              top: 98px;
+              left: 42px;
+            ">
+                <tr class="first-row">
+                    <th width="272px">Дисциплиналардын аталышы</th>
+                    <th width="145px" colspan="2">Жалпы саны</th>
+                    <th width="90px">
+                        Жыйынтык <br />
+                        баасы
+                    </th>
+                </tr>
+                <tr class="second-row">
+                    <th width="272px"></th>
+                    <th width="85px">академиялык сааттардын</th>
+                    <th width="60px">
+                        кредит- <br />
+                        тик
+                    </th>
+                    <th width="90px"></th>
+                </tr>
+
+                <!-- (tr>td*4)*46 -->
+                <!-- (tr>td{$}+td*3)*48 -->
+
+                {{#each list_kg48}}
+                {{#if isSemester}}
+                <tr>
+                    <td style="text-align: center;">{{semester}}</td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+
+                </tr>
+                {{else if isEmpty}}
+                <tr>
+                    <td style="color:white">.</td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+
+                </tr>
+
+                {{else}}
+                <tr>
+                    {{#if order}}
+                    <td style="text-align: left;">{{order}}. {{discipline}}</td>
+                    {{else}}
+                    <td style="text-align: left; padding-left:18px;">{{discipline}}</td>
+                    {{/if}}
+                    <td>{{chas}}</td>
+                    <td>{{kredits}}</td>
+                    <td>{{ozenka}}</td>
+                </tr>
+                {{/if}}
+                {{/each}}
+                {{!-- <tr>
+                    <td>1. Экономика</td>
+                    <td>72</td>
+                    <td>5</td>
+                    <td>жакшы</td>
+                </tr>
+                <tr>
+                    <td>2. АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ1234567890</td>
+                    <td>72</td>
+                    <td>5</td>
+                    <td>жакшы</td>
+                </tr> --}}
+
+            </table>
+        </li>
+
+        <li>
+            <p class="discipline-title" style="position: absolute; top: 32px; left: 570px">
+                Приложение к академической справке ВПО № 00000000
+            </p>
+            <p class="discipline-text" style="position: absolute; top: 62px; left: 570px">
+                За время обучения сдал(а) зачеты и итоговые экзамены по следующим
+                дисциплинам:
+            </p>
+
+            <table style="
+              width: 516px;
+              height: 646px;
+              position: absolute;
+              top: 100px;
+              left: 569px;
+            ">
+                <tr class="first-row">
+                    <th width="278px">Наименование дисциплин</th>
+                    <th width="144px" colspan="2">Общее количество</th>
+                    <th width="92px">
+                        Итоговая <br />
+                        оценка
+                    </th>
+                </tr>
+                <tr class="second-row">
+                    <th width="278px"></th>
+                    <th width="77px">
+                        академичес- <br />
+                        ких часов
+                    </th>
+                    <th width="67px">кредитов</th>
+                    <th width="92px"></th>
+                </tr>
+
+                <!-- (tr>td*4)*46 -->
+                <!-- (tr>td{$}+td*3)*48 -->
+                {{#each list48}}
+                {{#if isSemester}}
+                <tr>
+                    <td style="text-align: center;">{{semester}}</td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+
+                </tr>
+
+                {{else if isEmpty}}
+                <tr>
+                    <td style="color:white">.</td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+
+                </tr>
+
+                {{else}}
+                <tr>
+                    {{#if order}}
+                    <td style="text-align: left;">{{order}}. {{discipline}}</td>
+                    {{else}}
+                    <td style="text-align: left; padding-left:18px;">{{discipline}}</td>
+                    {{/if}}
+                    <td>{{chas}}</td>
+                    <td>{{kredits}}</td>
+                    <td>{{ozenka}}</td>
+                </tr>
+                {{/if}}
+                {{/each}}
+            </table>
+        </li>
+    </ul>
+</div>
+{{/if}}
+
+
+{{#if list87}}
+<div class="none">
+    <br>
+    <br>
+    <br>
+</div>
+
+
+<div id="third" class="A4">
+    <ul class="border discipline-grid">
+        <li>
+            <p class="discipline-title" style="position: absolute; top: 25px; left: 37px">
+                ВПО № 00000000 академиялык справкасына тиркеме
+            </p>
+            <p class="discipline-text" style="position: absolute; top: 45px; left: 37px">
+                Окуу мезгилинде төмөнкү дисциплиналар боюнча зачет жана
+                жыйынтыктоочу сынактарды берди:
+            </p>
+
+            <table style="
+              width: 510px;
+              height: 505px;
+              position: absolute;
+              top: 85px;
+              left: 37px;
+            ">
+                <tr class="first-row">
+                    <th width="285px">Дисциплиналардын аталышы</th>
+                    <th width="140px" colspan="2">Жалпы саны</th>
+                    <th width="85px">
+                        Жыйынтык <br />
+                        баасы
+                    </th>
+                </tr>
+                <tr class="second-row">
+                    <th width="285px"></th>
+                    <th width="85px">академиялык сааттардын</th>
+                    <th width="55px">
+                        кредит- <br />
+                        тик
+                    </th>
+                    <th width="85px"></th>
+                </tr>
+
+                <!-- (tr>td{$}+td*3)*39 -->
+
+                {{#each list_kg87}}
+                {{#if isSemester}}
+                <tr>
+                    <td style="text-align: center;">{{semester}}</td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+
+                </tr>
+
+                {{else if isEmpty}}
+                <tr>
+                    <td style="color:white">.</td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+
+                </tr>
+
+                {{else}}
+                <tr>
+                    {{#if order}}
+                    <td style="text-align: left;">{{order}}. {{discipline}}</td>
+                    {{else}}
+                    <td style="text-align: left; padding-left:18px;">{{discipline}}</td>
+                    {{/if}}
+                    <td>{{chas}}</td>
+                    <td>{{kredits}}</td>
+                    <td>{{ozenka}}</td>
+                </tr>
+                {{/if}}
+                {{/each}}
+
+            </table>
+
+            <span class="text-end noprint" style="position: absolute; top: 590px; left: 107px">
+                Теориялык окутуулуучу сааттардын жалпы саны:
+            </span>
+            <span class="text-end noprint" style="position: absolute; top: 603px; left: 243px">- документтин аягы
+                -</span>
+
+            <span class="info noprint" style="position: absolute; top: 617px; left: 40px">
+                * - башка жогорку окуу жайында окуган мезгилде.
+            </span>
+            <span class="text-rektor noprint" style="
+              position: absolute;
+              top: 652px;
+              left: 39px;
+              font-size: 11px;
+              line-height: 11px;
+            ">
+                Ректор <br />
+                Декан
+            </span>
+
+            <p class="text noprint" style="
+              position: absolute;
+              top: 700px;
+              left: 39px;
+              font-weight: bold;
+            ">
+                М.О.
+            </p>
+        </li>
+
+        <li>
+            <p class="discipline-title" style="position: absolute; top: 25px; left: 570px">
+                Приложение к академической справке ВПО № 00000000
+            </p>
+            <p class="discipline-text" style="position: absolute; top: 45px; left: 567px">
+                За время обучения сдал(а) зачеты и итоговые экзамены по следующим
+                дисциплинам:
+            </p>
+
+            <table style="
+              width: 516px;
+              height: 506px;
+              position: absolute;
+              top: 85px;
+              left: 567px;
+            ">
+                <tr class="first-row">
+                    <th width="270px">Наименование дисциплин</th>
+                    <th width="140px" colspan="2">Общее количество</th>
+                    <th width="90px">
+                        Итоговая <br />
+                        оценка
+                    </th>
+                </tr>
+                <tr class="second-row">
+                    <th width="270px"></th>
+                    <th width="74px">
+                        академичес- <br />
+                        ких часов
+                    </th>
+                    <th width="65px">кредитов</th>
+                    <th width="90px"></th>
+                </tr>
+
+                <!-- (tr>td{$}+td*3)*39 -->
+
+                {{#each list87}}
+                {{#if isSemester}}
+                <tr>
+                    <td style="text-align: center;">{{semester}}</td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+
+                </tr>
+
+                {{else if isEmpty}}
+                <tr>
+                    <td style="color:white">.</td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+
+                </tr>
+
+                {{else}}
+                <tr>
+                    {{#if order}}
+                    <td style="text-align: left;">{{order}}. {{discipline}}</td>
+                    {{else}}
+                    <td style="text-align: left; padding-left:18px;">{{discipline}}</td>
+                    {{/if}}
+                    <td>{{chas}}</td>
+                    <td>{{kredits}}</td>
+                    <td>{{ozenka}}</td>
+                </tr>
+                {{/if}}
+                {{/each}}
+
+
+            </table>
+            <span class="text-end noprint" style="position: absolute; top: 590px; left: 687px">
+                Всего часов теоретического обучения:
+            </span>
+            <span class="text-end noprint" style="position: absolute; top: 603px; left: 773px">- конец документа
+                -</span>
+
+            <span class="info noprint" style="position: absolute; top: 617px; left: 570px">
+                * - за время обучения в другом высшем учебном заведении.
+            </span>
+            <span class="text-rektor noprint" style="
+              position: absolute;
+              top: 652px;
+              left: 569px;
+              font-size: 11px;
+              line-height: 11px;
+            ">
+                Ректор <br />
+                Декан
+            </span>
+
+            <p class="text noprint" style="
+              position: absolute;
+              top: 700px;
+              left: 569px;
+              font-weight: bold;
+            ">
+                М.П.
+            </p>
+        </li>
+    </ul>
+</div>
+{{/if}}
+
+
+
+<div class="none">
+    <nav id="context-menu" class="context-menu">
+        <ul class="context-menu__items">
+            <li class="context-menu__item">
+                <a href="#" class="context-menu__link" onclick="copyMe()" data-action="View"><i
+                        class="fa fa-eye"></i>Копировать</a>
+            </li>
+            {{!-- <li class="context-menu__item">
+                <a href="#" class="context-menu__link" onclick="pasteMe(this)" data-action="Edit"><i class="fa fa-edit"></i>
+                    Вставить</a>
+            </li>
+            <li class="context-menu__item">
+                <a href="#" class="context-menu__link" onclick="searchMe()" data-action="Delete"><i
+                        class="fa fa-times"></i>Поиск</a>
+            </li> --}}
+        </ul>
+    </nav>
+</div>
+<script src="/js/change.js"></script>
+<script src="/js/context.js"></script>
+<script src="/js/print.js"></script>

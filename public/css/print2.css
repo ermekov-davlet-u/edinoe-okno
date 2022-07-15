@@ -1,0 +1,77 @@
+@media print {
+    @page {
+      size: landscape;
+      margin: 0;
+    }
+    .hide {
+      visibility: hidden !important;
+    }
+    .noprint {
+      display: none !important;
+    }
+    .enable-print {
+      visibility: visible;
+    }
+  
+    .page-break {
+      visibility: visible;
+      page-break-before: always;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    .A4 {
+      box-shadow: none;
+      margin: 0;
+      width: auto;
+      height: auto;
+      border: none;
+      overflow: hidden;
+      max-height: 100vh;
+    }
+  
+    .border {
+      border: 0.5px solid #fff;
+    }
+    .p3 {
+      border-right: 0.5px solid #fff;
+    }
+    .p2 {
+      border-left: 0.5px solid #fff;
+      border-right: 0.5px solid #fff;
+    }
+  
+    p,
+    img,
+    .title,
+    .kyrgyz,
+    .marked__line,
+    .dots {
+      visibility: hidden !important;
+    }
+  
+    /* page2 */
+  
+    .discipline-grid li:first-child {
+      border-right: 1px solid #fff;
+    }
+    th {
+      visibility: hidden !important;
+    }
+    table,
+    th,
+    td {
+      border: 0.5px solid white;
+    }
+  
+    /* ///////////////////////////////// */
+    span *:not(.print) {
+      visibility: hidden !important;
+    }
+    .print {
+      visibility: visible !important;
+      color: black;
+    }
+  }
+  

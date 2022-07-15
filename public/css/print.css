@@ -1,0 +1,120 @@
+@media print {
+  @page {
+    size: landscape;
+    margin: 0;
+    font-family: "Times New Roman", Times, serif !important;
+  }
+
+  .D_main_header {
+    display: none;
+  }
+
+  .hide {
+    visibility: hidden !important;
+  }
+
+  .noprint {
+    color: #000;
+    visibility: hidden !important;
+  }
+
+  .none {
+    display: none;
+  }
+
+  .enable-print {
+    display: block;
+  }
+
+  .page-break {
+    display: block;
+    page-break-before: always;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .A4 {
+    box-shadow: none;
+    margin: 0;
+    width: auto;
+    height: auto;
+    border: none;
+    overflow: hidden;
+    max-height: 100vh;
+    font-family: "Times New Roman", Times, serif !important;
+  }
+
+  .border {
+    border: none !important;
+    /* border: 0.5px solid #000; */
+  }
+
+  .p3 {
+    border: none !important;
+    /* border-right: 0.5px solid #000; */
+  }
+
+  .p2 {
+    border: none !important;
+    /* border-left: 0.5px solid #000;
+    border-right: 0.5px solid #000; */
+  }
+
+  p,
+  img,
+  .title,
+  .kyrgyz,
+  .marked__line,
+  .dots {
+    /* display: none !important;  */
+    color: #000;
+    visibility: hidden !important;
+  }
+
+  /* page2 */
+
+  .discipline-grid li:first-child {
+    border-right: 1px solid #000;
+    border: none !important;
+  }
+
+  th {
+    /* display: none !important;  */
+    color: #000;
+    /* visibility: hidden !important; -----------------*/
+  }
+
+  table,
+  th,
+  td {
+    border: none;
+  }
+
+  /* ///////////////////////////////// */
+  span *:not(.print) {
+    /* display: none !important;  */
+    color: #000;
+    visibility: hidden !important;
+  }
+
+  .print {
+    display: block !important;
+    color: black;
+    font-family: "Times New Roman", Times, serif !important;
+  }
+
+  .first-row th {
+    color: #fff !important;
+  }
+
+  /* table tr:nth-child(3) td {
+    padding-top: 43px;
+  } */
+
+  .second-row th {
+    color: #fff !important;
+  }
+}

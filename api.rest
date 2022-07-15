@@ -1,0 +1,25 @@
+POST http://localhost:3009/logout HTTP/1.1
+content-type: application/json
+
+{
+    "name": "sample",
+    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+}
+
+###
+POST http://localhost:3009/login HTTP/1.1
+content-type: application/json
+ 
+{
+    "username": "bbb",
+    "password": "bbb"
+}
+###
+POST http://localhost:3009/check HTTP/1.1
+content-type: application/json
+Cookie: tokenBT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzkyOCwibmFtZSI6ItCR0LDQsdCw0LXQsiDQkdC10LrRgtGD0YDQs9Cw0L0g0J3QsNC30LDRgNCx0LXQutC-0LLQuNGHIiwiaWF0IjoxNjI5MTA2MTY2LCJleHAiOjE2MjkxMDk3NjZ9.U8AgwNZCIAFnn1CpXVmSoAUcuSxxhbdxmYFnSVTc4rQ;
+ 
+{
+    "username": "bbb",
+    "password": "bbb"
+}
