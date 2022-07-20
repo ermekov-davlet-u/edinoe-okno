@@ -11,13 +11,12 @@ async function getBase64Data(id_student, id_group){
         if (
             r &&
             r.recordsets &&
-            r.recordsets.length &&
-            r.recordsets[1] 
+            r.recordsets[2][0]?.photo 
         ) {
-            let base64data = Buffer.from(r.recordsets[1][0].photo).toString('base64');
-            return({ base64data });
+            let base64data = await r.recordsets[2][0]?.photo.toString('base64');
+            return({ base64data: "data:image/jpg;base64," + base64data });
         }
-        else return({ base64data: [] });
+        else return({ base64data: "" });
     } catch (err) {
         console.log("base64data error", err.message);
         return({ base64data: [] });
@@ -31,7 +30,7 @@ async function getOBJ(id_student, id_group){
         let r = await pool
             .request()
             .query(`exec SP_uch_kard_obshee @id_group=${id_group}, @id_student=${id_student}`);
-
+        
         if (
             r &&
             r.recordsets &&

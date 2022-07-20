@@ -8,6 +8,7 @@ const personalController = require("../controller/personalController")
 const academController = require("../controller/academController")
 const discriptionController = require("../controller/descriptionController")
 const studentController = require("../controller/studentController")
+const srudentReportController = require("../controller/report/studentReportController")
 const { authenticateJWT } = require("../services/tokenService");
 
 
@@ -58,22 +59,28 @@ router.post("/select/group/list", selectController.eduGroup)
 
 
 //oknoController
-router.get("/okno/properties", oknoController.getOknoProperties )
+router.post("/okno/properties", oknoController.getOknoProperties )
 router.post("/access/properties", oknoController.getAccessProperties )
 router.post("/propertiesiu", oknoController.getPropertiesIU )
 router.get("/okno/role", oknoController.getOknoRole )
 
 //personalController
-router.post("/okno/properties", personalController.getBase64Data )
-router.post("/access/properties", personalController.getOBJ )
+router.post("/okno/image", personalController.getBase64Data )
+router.get("/okno/obj", personalController.getOBJ )
 
 router.post("/description-insert", discriptionController.insDiscription )
-router.post("/description-delete", discriptionController.delDiscription )
-router.post("/description-update", discriptionController.updDiscription )
+router.delete("/description", discriptionController.delDiscription )
+router.put("/description", discriptionController.updDiscription )
 router.post("/okno-description", discriptionController.oknoDiscription )
 
 router.post("/student-by-group", studentController.getStudentByGroup )
 router.post("/student-by-name", studentController.getStudentByName )
+
+router.get("/payment", oknoController.getPaymentStudent)
+
+router.use("/teacher", require('../controller/teacher/teacherController'))
+router.use("/report", srudentReportController)
+router.use("/regis", require("../controller/registration/academDocs"))
 
 // const { studentServices } = require('../routes/student_service/index')
 

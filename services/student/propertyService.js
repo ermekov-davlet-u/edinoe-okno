@@ -1,23 +1,43 @@
 const { sql, poolPromise } = require('../db')
 
-async function getOknoProperties(){
+async function getOknoProperties( id_student ){
     try {
         const pool = await poolPromise;
-        const r = await pool.request().query(`exec SP_Okno_student @id_student = 5090`)
+        const r = await pool.request().query(`exec SP_Okno_student @id_student = ${ id_student }`)
         if (
             r &&
             r.recordsets &&
             r.recordsets.length &&
             r.recordsets[0]
-        )
-            return({ Properties: r.recordset });
+        )return({ Properties: r.recordset });
         else return({ Properties: [] });
     } catch (error) {
         console.log(error.message);
         return { error: true, message: error.message }
     }
 }
-
+async function getPaymentStudent(id_student) {
+    try {
+        const pool = await poolPromise;
+        let r = await pool
+        .request()
+        .query(`
+        exec SP_uch_kart_o  @st= ${id_student}`);
+        if (
+        r &&
+        r.recordsets &&
+        r.recordsets[0]
+        )
+        {
+            return({ PAYMENT: r.recordset });
+        }
+        else return({ PAYMENT: [] });
+    } catch (err) {
+        console.log("PAYMENT error", err.message);
+        return({ PAYMENT: [] });
+    }
+      
+}
     async function accessProperties(SotrudnikStudent, id_AVN_User){
         try { 
             const pool = await poolPromise;
@@ -43,15 +63,8 @@ async function getOknoProperties(){
                 const pool = await poolPromise;
                 let r = await pool
                     .request()
-                    .query(`SELECT [ckb]
-                ,[dekanat]
-                ,[KjMTB]
-                ,[obshejitie]
-                ,[biblioteka]
-                ,[Buhgalteriy]
-                ,[pole1]
-                ,[pole2]
-                ,[pole3] FROM [AVN].[dbo].[okno_role] where id_AVN_User = 5090`);
+                    .query(`SELECT id_a_year as value, p32 as label
+                    FROM a_year`);
                 if (
                     r &&
                     r.recordsets &&
@@ -109,4 +122,4 @@ async function getOknoProperties(){
     }
 
 
-module.exports = { getOknoProperties, accessProperties, oknoRole, propertiesIU }
+module.exports = { getOknoProperties, accessProperties, oknoRole, propertiesIU, getPaymentStudent }
