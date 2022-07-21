@@ -81,6 +81,7 @@ router.get("/payment", oknoController.getPaymentStudent)
 router.use("/teacher", require('../controller/teacher/teacherController'))
 router.use("/report", srudentReportController)
 router.use("/regis", require("../controller/registration/academDocs"))
+router.use("/local", require("../controller/localy/localyController"))
 
 // const { studentServices } = require('../routes/student_service/index')
 

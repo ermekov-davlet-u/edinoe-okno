@@ -6,16 +6,14 @@ async function republic(){
         const pool = await poolPromise;
         let r = await pool
             .request()
-            .query(`SELECT  * FROM [AVN].[dbo].[Republics]`);
-
+            .query(`SELECT  id_republics as value, republic as label FROM [AVN].[dbo].[Republics]`);
         if (
             r &&
-            r.recordsets &&
-            r.recordsets.length &&
-            r.recordsets[0] 
+            r.recordset &&
+            r.recordset.length 
         )
-            return({ Republics: r.recordset });
-        else return({ Republics: [] });
+            return( r.recordset );
+        else return [] ;
     } catch (err) {
         console.log("Republics error", err.message);
         return({ Republics: [] });
@@ -23,22 +21,19 @@ async function republic(){
 
 }
 
-async function oblast(){
+async function oblast(id_republics){
     try {
         const pool = await poolPromise;
-        const { id_republics } = req.body;
         let r = await pool
             .request()
-            .query(`SELECT * FROM [AVN].[dbo].[Oblast] where id_republics=${id_republics}`);
+            .query(`SELECT id_oblast as value, oblast as label FROM [AVN].[dbo].[Oblast] where id_republics=${id_republics}`);
 
         if (
             r &&
-            r.recordsets &&
-            r.recordsets.length &&
-            r.recordsets[0] 
-        )
-            return({ OblastList: r.recordset });
-        else return({ OblastList: [] });
+            r.recordset &&
+            r.recordset.length )
+            return(r.recordset );
+        else return( [] );
     } catch (err) {
         console.log("oblast error", err.message);
         return({ OblastList: [] });
@@ -46,22 +41,20 @@ async function oblast(){
 
 }
 
-async function raion(){
+async function raion(id_oblast){
     try {
-        const { id_oblast } = req.body;
         const pool = await poolPromise;
         let r = await pool
             .request()
-            .query(`SELECT * FROM [AVN].[dbo].[Raion] where id_oblast=${id_oblast}`);
+            .query(`SELECT id_raion as value, raion as label FROM [AVN].[dbo].[Raion] where id_oblast=${id_oblast}`);
 
         if (
             r &&
-            r.recordsets &&
-            r.recordsets.length &&
-            r.recordsets[0] 
+            r.recordset &&
+            r.recordset.length 
         )
-            return({ RaionList: r.recordset });
-        else return({ RaionList: [] });
+            return( r.recordset );
+        else return( [] );
     } catch (err) {
         console.log("RaionList error", err.message);
         return({ RaionList: [] });
@@ -78,8 +71,8 @@ async function raionUpdate(id_oblast, id_raion, newRaion, newRaionKg){
     WHERE id_republics=1 and id_oblast=${id_oblast} and id_raion=${id_raion}`);
 
         if (r && r.rowsAffected && r.rowsAffected.length)
-            return({ result: r.rowsAffected[0] });
-        else return({ result: null });
+            return( r.rowsAffected[0]);
+        else return( null );
     } catch (err) {
         console.log("raion-update error", err.message);
         return({ result: null });
@@ -95,8 +88,8 @@ async function raionInsert(id_oblast, newRaion, newRaionKg){
   `);
 
         if (r && r.rowsAffected && r.rowsAffected.length)
-            return({ result: r.rowsAffected[0] });
-        else return({ result: null });
+            return(r.rowsAffected[0] );
+        else return(null);
     } catch (err) {
         console.log("raion-insert error", err.message);
         return({ result: null });
@@ -109,17 +102,19 @@ async function raionDelete(id_raion){
         let r = await pool.request().query(`DELETE FROM [AVN].[dbo].[Raion] WHERE id_raion=${id_raion}`);
 
         if (r && r.rowsAffected && r.rowsAffected.length)
-            return({ result: r.rowsAffected[0] });
-        else return({ result: null });
+            return( r.rowsAffected[0] );
+        else return( null );
     } catch (err) {
         console.log("raion delete error", err.message);
         return({ result: null });
     }
 }
 
-module.exports = { republic,
+module.exports = { 
+    republic,
     oblast,
     raion,
     raionUpdate,
     raionInsert,
-    raionDelete }
+    raionDelete 
+}
