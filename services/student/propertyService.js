@@ -38,18 +38,18 @@ async function getPaymentStudent(id_student) {
     }
       
 }
-    async function accessProperties(SotrudnikStudent, id_AVN_User){
+    async function      accessProperties(SotrudnikStudent, id_AVN_User){
         try { 
             const pool = await poolPromise;
+            console.log(SotrudnikStudent, id_AVN_User);
             let r = await pool
                 .request()
-                .query(`exec SP_BT_access_fields @id_AVN_User=5090, @SotrudnikStudent=${SotrudnikStudent}`);
+                .query(`exec SP_BT_access_fields @id_AVN_User = 5090, @SotrudnikStudent=${SotrudnikStudent}`);
 
             if (
                 r &&
-                r.recordsets &&
-                r.recordsets.length &&
-                r.recordsets[0]
+                r.recordset &&
+                r.recordset.length 
             )   return({ AccesToProporties: r.recordset });
             else return({ AccesToProporties: [] });
         } catch (err) {

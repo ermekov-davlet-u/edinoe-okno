@@ -17,7 +17,7 @@ class OknoProperties {
 
     async getAccessProperties(req, res){
         try {
-            const result = await oknoProperties.accessProperties(req.body.SotrudnikStudent)
+            const result = await oknoProperties.accessProperties(req.query.sotrudnikStudent, req.query.id_AVN_User)
             res.send(result)
         } catch (error) {
             console.log(error.message);

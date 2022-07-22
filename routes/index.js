@@ -60,7 +60,7 @@ router.post("/select/group/list", selectController.eduGroup)
 
 //oknoController
 router.post("/okno/properties", oknoController.getOknoProperties )
-router.post("/access/properties", oknoController.getAccessProperties )
+router.get("/access/properties", oknoController.getAccessProperties )
 router.post("/propertiesiu", oknoController.getPropertiesIU )
 router.get("/okno/role", oknoController.getOknoRole )
 

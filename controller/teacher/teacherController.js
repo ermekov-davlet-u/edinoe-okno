@@ -2,9 +2,10 @@ const express = require("express")
 const router = express.Router()
 const teacherService = require("../../services/teacher/teacherService.js")
 
-router.post("/teacher-list", async function (req, res, next) {
+router.get("/teacher-list", async function (req, res, next) {
     try {
-      let result = await teacherService.teacherList()
+      const { name } = req.query
+      let result = await teacherService.teacherList(name)
       res.send(result);
     } catch (err) {
       console.log("TeacherList error", err.message);
@@ -24,7 +25,7 @@ router.post("/teacher-list", async function (req, res, next) {
   
   });
   
-  router.post("/okno-properties_teacher", async function (req, res, next) {
+  router.get("/okno-properties", async function (req, res, next) {
     try {
       const { id_teacher } = req.body;
       const result = await teacherService.oknoPropertiesTeacher(id_teacher)
@@ -46,7 +47,7 @@ router.post("/teacher-list", async function (req, res, next) {
   
   });
 
-  router.post("/description-teacher-insert", async function (req, res, next) {
+  router.post("/description-teacher", async function (req, res, next) {
     try {
       const { id_teacher, id_user, okno_description } = req.body;
       const result = await teacherService.descriptionTeacherInsert(id_teacher, id_user, okno_description)
@@ -57,7 +58,7 @@ router.post("/teacher-list", async function (req, res, next) {
     }
   });
 
-  router.post("/okno-description-teacher", async function (req, res, next) {
+  router.get("/okno-description", async function (req, res, next) {
     try {
       const { id_teacher } = req.body;
       const result = await teacherService.oknoDescriptionTeacher(id_teacher)
@@ -68,19 +69,39 @@ router.post("/teacher-list", async function (req, res, next) {
     }
   
   });
-
-
   
-  router.post("/teacher-report", async function (req, res, next) {
+  router.get("/teacher-report", async function (req, res, next) {
     try {
-      const { id_teacher } = req.body;
+      const { id_teacher } = req.query;
       const result = await teacherService.teacherReport(id_teacher)
       res.send(result);
     } catch (err) {
       console.log("TeacherReport error", err.message);
       res.send({ TeacherReport: [] });
     }
-  
   });
+
+  
+router.delete("/description-teacher", async function (req, res, next) {
+  try {
+    const { id_okno_description_teacher } = req.query;
+    const result = await teacherService.descriptionTeacherDelete(id_okno_description_teacher)
+    res.send( result );
+  } catch (err) {
+    console.log("description-teacher delete error", err.message);
+    res.send({ result: null });
+  }
+});
+
+router.put("/description-teacher", async function (req, res, next) {
+  try {
+    const { id_teacher, okno_description, id_okno_description_teacher } = req.body;
+    let result = await teacherService.descriptionTeacherInsert(id_teacher, okno_description, id_okno_description_teacher)
+    res.send( result );
+  } catch (err) {
+    console.log("description-teacher update error", err.message);
+    res.send({ result: null });
+  }
+});
 
   module.exports =  router

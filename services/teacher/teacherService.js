@@ -1,14 +1,17 @@
 const { poolPromise } = require("../db");
-async function teacherList(){
+async function teacherList(name){
     try {
       const pool = await poolPromise;
       let r = await pool
         .request()
-        .query(`SELECT * FROM [AVN].[dbo].[t_fio] ORDER by t_fio asc`);
+        .query(`SELECT * 
+        FROM [AVN].[dbo].[t_fio] 
+        WHERE t_fio LIKE '${name}%  ' 
+        ORDER by t_fio asc`);
       if (
         r &&
-        r.recordsets &&
-        r.recordsets.length 
+        r.recordset &&
+        r.recordset.length 
       )
         return({ TeacherList: r.recordset });
       else return({ TeacherList: [] });
