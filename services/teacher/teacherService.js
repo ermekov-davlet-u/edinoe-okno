@@ -27,7 +27,7 @@ async function teacherPhoto(id_teacher){
       const pool = await poolPromise;
       let r = await pool
         .request()
-        .query(`SELECT * FROM [AVN].[dbo].[Photo] where id_teacher=${id_teacher}`);
+        .query(`SELECT * FROM [AVN].[dbo].[Photo] where id_teacher=${630}`);
   
       if (
         r &&

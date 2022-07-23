@@ -27,7 +27,7 @@ router.get("/teacher-list", async function (req, res, next) {
   
   router.get("/okno-properties", async function (req, res, next) {
     try {
-      const { id_teacher } = req.body;
+      const { id_teacher } = req.query;
       const result = await teacherService.oknoPropertiesTeacher(id_teacher)
       res.send(result);
     } catch (err) {
@@ -60,7 +60,7 @@ router.get("/teacher-list", async function (req, res, next) {
 
   router.get("/okno-description", async function (req, res, next) {
     try {
-      const { id_teacher } = req.body;
+      const { id_teacher } = req.query;
       const result = await teacherService.oknoDescriptionTeacher(id_teacher)
       res.send(result);
     } catch (err) {
