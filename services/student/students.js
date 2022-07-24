@@ -26,13 +26,13 @@ async function getStudList(id_a_year, id_f_educ, id_faculty, id_rate, id_group){
     }
 }
 
-async function getStudent(id_AVN_User, SearchNameSt){
+async function getStudent(SearchNameSt){
     try {
         const pool = await poolPromise;
         let r = await pool
             .request()
             .query(
-                (`EXEC SP_BT_select   @id_login =${id_AVN_User}, @s_fio='${SearchNameSt}', @dekanat=1`)
+                (`EXEC SP_BT_select   @id_login =5090, @s_fio='${SearchNameSt}', @dekanat=1`)
             );
         if (
             r &&
