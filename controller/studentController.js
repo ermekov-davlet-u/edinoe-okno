@@ -15,7 +15,6 @@ class StudentController{
     async getStudentByName(req, res){
         try {
             const { SearchNameSt } = req.body
-            console.log(SearchNameSt);
             const result = await student.getStudent( SearchNameSt )
             res.send( { error: false, data: result } ) 
         } catch (error) {

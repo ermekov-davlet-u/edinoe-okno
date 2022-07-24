@@ -4,7 +4,7 @@ class DiscriptionController {
 
     async delDiscription(req, res){
         try {
-            const {id_okno_description} = req.body
+            const {id_okno_description} = req.query
             const result = await discriptionService.descriptionDelete(id_okno_description)
             res.send( { error: false, data: result } )
         } catch (error) {

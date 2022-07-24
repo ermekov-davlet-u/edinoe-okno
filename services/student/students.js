@@ -26,7 +26,8 @@ async function getStudList(id_a_year, id_f_educ, id_faculty, id_rate, id_group){
     }
 }
 
-async function getStudent(SearchNameSt){
+
+async function getStudent( SearchNameSt){
     try {
         const pool = await poolPromise;
         let r = await pool
