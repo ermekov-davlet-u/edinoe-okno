@@ -106,7 +106,7 @@ async function teacherPropertiesInsertUpdate(id_teacher,
     }
   
   }
-async function descriptionTeacherInsert(id_teacher, okno_description, id_okno_description_teacher ){
+async function descriptionTeacherUpd(id_teacher, okno_description, id_okno_description_teacher ){
     try {
       const pool = await poolPromise;
       let r = await pool.request().query(`UPDATE okno_description_teacher SET okno_description = '${okno_description}'
@@ -119,8 +119,21 @@ async function descriptionTeacherInsert(id_teacher, okno_description, id_okno_de
       return({ result: null });
     }
   }
-  
 
+async function descriptionTeacherInsert(id_teacher, id_user, okno_description){
+  try {
+    const pool = await poolPromise;
+    let r = await pool.request().query(`INSERT INTO [AVN].[dbo].[okno_description_teacher](id_teacher,id_user,okno_description)
+    VALUES(${id_teacher},${id_user},'${okno_description}')`);
+
+    if (r && r.rowsAffected && r.rowsAffected.length)
+      return({ result: r.rowsAffected[0] });
+    else return({ result: null });
+  } catch (err) {
+    console.log("description-teacher insert error", err.message);
+    return({ result: null });
+  }
+}
   
 async function descriptionTeacherDelete(id_teacher){
     try {
@@ -128,15 +141,12 @@ async function descriptionTeacherDelete(id_teacher){
       let r = await pool
         .request()
         .query(`
-        EXEC	SP_BT_teacher_report
-            @id_teacher = ${id_teacher}`);
-  
+        DELETE okno_description_teacher
+        WHERE id_okno_description_teacher = ${id_teacher}`);
       if (
-        r &&
-        r.recordset &&
-        r.recordset.length 
+        r
       )
-        return({ TeacherReport: r.recordset });
+        return({ result: r.rowsAffected });
       else return({ TeacherReport: [] });
     } catch (err) {
       console.log("TeacherReport error", err.message);
@@ -195,6 +205,7 @@ module.exports = {
     oknoPropertiesTeacher,
     teacherPropertiesInsertUpdate,
     descriptionTeacherInsert,
+    descriptionTeacherUpd,
     descriptionTeacherDelete,
     oknoDescriptionTeacher,
     teacherReport

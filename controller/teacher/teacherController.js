@@ -50,7 +50,6 @@ router.get("/teacher-list", async function (req, res, next) {
   router.post("/description-teacher", async function (req, res, next) {
     try {
       const { id_teacher, id_user, okno_description } = req.body;
-      console.log(id_teacher, id_user, okno_description);
       const result = await teacherService.descriptionTeacherInsert(id_teacher, id_user, okno_description)
       res.send(result);
     } catch (err) {
@@ -97,8 +96,7 @@ router.delete("/description-teacher", async function (req, res, next) {
 router.put("/description-teacher", async function (req, res, next) {
   try {
     const { id_teacher, okno_description, id_okno_description_teacher } = req.body;
-    console.log(id_teacher, okno_description, id_okno_description_teacher)
-    let result = await teacherService.descriptionTeacherInsert(id_teacher, okno_description, id_okno_description_teacher)
+    let result = await teacherService.descriptionTeacherUpd(id_teacher, okno_description, id_okno_description_teacher)
     res.send( result );
   } catch (err) {
     console.log("description-teacher update error", err.message);
