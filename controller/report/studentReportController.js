@@ -3,8 +3,8 @@ const router = require("express").Router()
 
 router.get("/reportslist", async function (req, res, next) {
     try {
-        const result = await reportService.reportslist();
-        res.send({ ReportsList: result });
+        const result = await reportService.reportTypelist();
+        res.send(result);
     } catch (err) {
       console.log("ReportsList error", err.message);
       res.send({ ReportsList: [] });
@@ -15,7 +15,7 @@ router.get("/reportApplicationWait", async function (req, res, next) {
     try {
         const { reportType } = req.query
         const result = await reportService.reportApplicationWait(reportType);
-        res.send({ ReportsList: result });
+        res.send( result );
     } catch (err) {
       console.log("reportApplicationWait error", err.message);
       res.send({ reportApplicationWait: [] });

@@ -8,7 +8,7 @@ async function searchStudentList( s_fio_document ){
       let r = await pool
         .request()
         .query(`SELECT     TOP (500) CASE WHEN Student.first_p1 IS NULL THEN s_fio.s_fio ELSE '(' + Student.first_p1 + ')' + s_fio.s_fio END AS s_fio, [group].p20, movement.sh_st, 
-                    faculty.[p23-1], movement.id_student, [group].id_group, [group].id_faculty, ISNULL(S_G.id_student, - 1) AS Expr1
+                    faculty.[p23-1] as faculty, movement.id_student, [group].id_group, [group].id_faculty, ISNULL(S_G.id_student, - 1) AS Expr1
             FROM         movement INNER JOIN
                     Student ON movement.id_student = Student.id_student INNER JOIN
                     s_fio ON movement.id_student = s_fio.id_student INNER JOIN
@@ -38,7 +38,7 @@ async function searchStudentList( s_fio_document ){
       const pool = await poolPromise;
       let r = await pool
         .request()
-        .query(`SELECT * FROM akadem_document_type`);
+        .query(`SELECT id_akadem_document_type as value, akadem_document_type as label FROM akadem_document_type`);
   
       if (
         r &&
@@ -80,7 +80,7 @@ async function searchStudentList( s_fio_document ){
     try {
       const pool = await poolPromise;
       let r = await pool.request().query(`INSERT INTO akadem_document (id_akadem_document_type,id_student ,document_numer,document_reg_numer,document_date ,id_avn_user)
-      VALUES (${id_academ_document_type}, ${selected_id_student}, ${new_uni_number},${new_reg_number}, '${give_date}',  ${id_AVN_User})`);
+      VALUES (${id_academ_document_type}, ${selected_id_student}, '${new_uni_number}','${new_reg_number}', '${give_date}',  ${id_AVN_User})`);
   
       if (r && r.rowsAffected && r.rowsAffected.length)
         return({ result: r.rowsAffected[0] });

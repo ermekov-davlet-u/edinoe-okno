@@ -61,6 +61,7 @@ router.post("/select/group/list", selectController.eduGroup)
 //oknoController
 router.post("/okno/properties", oknoController.getOknoProperties )
 router.get("/access/properties", oknoController.getAccessProperties )
+router.get("/access/teacher-properties", oknoController.getAccessProperties )
 router.post("/propertiesiu", oknoController.getPropertiesIU )
 router.get("/okno/role", oknoController.getOknoRole )
 
@@ -82,6 +83,7 @@ router.use("/teacher", require('../controller/teacher/teacherController'))
 router.use("/report", srudentReportController)
 router.use("/regis", require("../controller/registration/academDocs"))
 router.use("/local", require("../controller/localy/localyController"))
+router.use("/addition", require("../controller/addition/index.js"))
 
 // const { studentServices } = require('../routes/student_service/index')
 

@@ -36,9 +36,41 @@ router.get("/teacher-list", async function (req, res, next) {
     }
   });
   
-  router.post("/teacher-properties-insert-update", async function (req, res, next) {
+  router.post("/teacher-propertiesui", async function (req, res, next) {
     try {
-        const result = await teacherService.teacherPropertiesInsertUpdate()
+      const { id_teacher,
+        t_fio_pole1,
+        t_fio_pole2,
+        t_fio_pole3,
+        t_fio_pole4,
+        t_fio_pole5,
+        t_fio_pole6,
+        t_fio_pole7,
+        t_fio_pole8,
+        t_fio_pole9,
+        AVN_user } = req.body
+        console.log(id_teacher,
+          t_fio_pole1,
+          t_fio_pole2,
+          t_fio_pole3,
+          t_fio_pole4,
+          t_fio_pole5,
+          t_fio_pole6,
+          t_fio_pole7,
+          t_fio_pole8,
+          t_fio_pole9,
+          AVN_user);
+        const result = await teacherService.teacherPropertiesInsertUpdate( id_teacher,
+          t_fio_pole1,
+          t_fio_pole2,
+          t_fio_pole3,
+          t_fio_pole4,
+          t_fio_pole5,
+          t_fio_pole6,
+          t_fio_pole7,
+          t_fio_pole8,
+          t_fio_pole9,
+          AVN_user )
         res.send(result);
     } catch (err) {
       console.log("DescriptionTeacher error", err.message);

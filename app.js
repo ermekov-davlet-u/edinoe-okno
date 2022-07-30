@@ -14,7 +14,7 @@ const CONFIG = require(path.join(__dirname, "config.js"));
 var indexRouter = require("./routes/index");
 var authRouter = require("./routes/auth");
 const corsOptions ={
-  origin:'http://localhost:3000', 
+  origin:'*', 
   credentials:true,            //access-control-allow-credentials:true
   optionSuccessStatus:200
 }

@@ -6,7 +6,7 @@ async function teacherList(name){
         .request()
         .query(`SELECT * 
         FROM [AVN].[dbo].[t_fio] 
-        WHERE t_fio LIKE '${name}%  ' 
+        WHERE t_fio LIKE '${name}%' 
         ORDER by t_fio asc`);
       if (
         r &&
@@ -27,17 +27,17 @@ async function teacherPhoto(id_teacher){
       const pool = await poolPromise;
       let r = await pool
         .request()
-        .query(`SELECT * FROM [AVN].[dbo].[Photo] where id_teacher=${630}`);
+        .query(`SELECT * FROM [AVN].[dbo].[Photo] where id_teacher=${id_teacher}`);
   
       if (
         r &&
         r.recordset &&
         r.recordset.length 
       ) {
-        let teacherPhoto = Buffer.from(r.recordset[0].photo).toString('base64');
+        let teacherPhoto =  Buffer.from(r.recordset[0].photo).toString('base64');
         return({ teacherPhoto });
       }
-      else return({ teacherPhoto: [] });
+      else return({ teacherPhoto: "" });
     } catch (err) {
       console.log("teacherPhoto error", err.message);
       return({ teacherPhoto: [] });
@@ -79,6 +79,16 @@ async function teacherPropertiesInsertUpdate(id_teacher,
   t_fio_pole9,
   AVN_user){
     try {
+      console.log(id_teacher,
+        t_fio_pole1,
+        t_fio_pole2,
+        t_fio_pole3,
+        t_fio_pole4,
+        t_fio_pole5,
+        t_fio_pole6,
+        t_fio_pole7,
+        t_fio_pole8,
+        t_fio_pole9);
       const pool = await poolPromise;
       let r = await pool
         .request()
@@ -93,12 +103,12 @@ async function teacherPropertiesInsertUpdate(id_teacher,
        ,@t_fio_pole7 =${t_fio_pole7}
        ,@t_fio_pole8 =${t_fio_pole8}
        ,@t_fio_pole9 =${t_fio_pole9}
-       ,@AVN_user ='${AVN_user}'`);
-  
+       ,@AVN_user =5090`);
+      console.log(r);
       if (r &&
-        r.recordsets &&
-        r.recordsets.length )
-        return({ result: r.recordsets });
+        r.recordset &&
+        r.recordset.length )
+        return({ result: r.recordset[0]});
       else return({ result: null });
     } catch (err) {
       console.log("properties-teacher-insert-update error", err.message);
@@ -210,3 +220,4 @@ module.exports = {
     oknoDescriptionTeacher,
     teacherReport
 }
+

@@ -1,11 +1,11 @@
 const { poolPromise } = require("../db");
 
-async function reportslist() {
+async function reportTypelist() {
     try {
       const pool = await poolPromise;
       let r = await pool
         .request()
-        .query(`SELECT *FROM [AVN].[dbo].[okno_document]`);
+        .query(`SELECT id_okno_document as value, okno_document as label FROM okno_document`);
   
       if (
         r &&
@@ -205,7 +205,7 @@ async function reportslist() {
   }
   
   module.exports = {
-    reportslist,
+    reportTypelist,
     reportApplicationWait,
     reportApplicationDone,
     reportApplicationView,

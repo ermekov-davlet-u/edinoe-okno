@@ -14,8 +14,9 @@ class StudentController{
 
     async getStudentByName(req, res){
         try {
+            const { limit } = req.query
             const { SearchNameSt } = req.body
-            const result = await student.getStudent( SearchNameSt )
+            const result = await student.getStudent( SearchNameSt, limit )
             res.send( { error: false, data: result } ) 
         } catch (error) {
             console.log(error.message);
