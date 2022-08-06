@@ -26,7 +26,7 @@ router.post("/reportApplicationDone", async function (req, res, next) {
     try {
         const { s_fio_document } = req.body
         const result = await reportService.reportApplicationDone(s_fio_document);
-        res.send({ ReportsList: result });
+        res.send( result );
     } catch (err) {
       console.log("reportApplicationDone error", err.message);
       res.send({ reportApplicationDone: [] });
@@ -53,14 +53,15 @@ router.post("/reportApplicationUpdate", async function (req, res, next) {
       console.log("reportApplicationUpdate error", err.message);
       res.send({ result: null });
     }
-  
   });
   
-router.post("/obhodnoi-list", async function (req, res, next) {
+router.get("/obhodnoi-list", async function (req, res, next) {
     try {
         const { id_group, id_student, id_protocols } = req.body
         const result = await reportService.obhodnoiList(id_group, id_student, id_protocols);
-        res.send({ ReportsList: result });
+        const obj = result
+        console.log(obj.okno)
+        res.render("bypass", {obj: result});
     } catch (err) {
       console.log("ObhodnoiList error", err.message);
       res.send({ ObhodnoiList: [] });

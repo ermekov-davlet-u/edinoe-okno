@@ -1,0 +1,16 @@
+@media print {
+    .D_main_header{
+        display: none;
+
+    }
+    table{
+        border: 1px solid grey !important;
+    }
+    td, th {
+        border: 1px solid grey;
+        text-align: left;
+        padding: 0 4px;
+        text-align: center;
+      }
+
+  }

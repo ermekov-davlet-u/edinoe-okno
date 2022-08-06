@@ -1,0 +1,193 @@
+<link rel="stylesheet" href="/css/context.css" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/demand.css" />
+<link rel = "stylesheet" media = "print" href = "/css/myprint.css">
+<script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@gh-pages/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    <div class="demand">
+
+        <div class="demand_top">
+            <div class="demand-top_left">
+                <h2>
+                    ОБХОДНОЙ ЛИСТ
+                </h2>
+                <h5>
+                    {{
+                        obj.vuz.vuz
+                    }}
+                </h5>
+            </div>
+            <div id="http://avn.oshsu.kg:3034/" class="qrcode"></div>
+        </div>
+
+    <div class="demand_stud"> 
+        <span class="stud_name w180">
+            Ф.И.О:
+        </span>
+        <span class="stud_content">
+            {{
+                obj.vuz.s_fio
+            }}
+        </span>
+    </div>
+    <div class="demand_stud"> 
+        <span class="stud_name w180">
+            Факультет:
+        </span>
+        <span class="stud_content">
+            {{
+                obj.vuz.faculty
+            }}
+        </span>
+    </div>
+    <div class="demand_stud"> 
+        <span class="stud_name w180">
+            Направление:
+        </span>
+        <span class="stud_content">
+            {{
+                obj.vuz.direction
+            }}
+        </span>
+    </div>
+    <div class="demand_stud"> 
+        <span class="stud_name w180">
+            Группа:
+        </span>
+        <span class="stud_content">
+            {{
+                obj.vuz.p20
+            }}
+        </span>
+    </div>
+    <div class="demand_stud"> 
+        <span class="stud_name w180">
+            Форма обучения:
+        </span>
+        <span class="stud_content">
+            {{
+                obj.vuz.p108
+            }}
+        </span>
+    </div>
+
+    <table class="mt6">
+        <thead>
+            <tr style="background-color: #bee3f8;">
+                <td>
+                    №
+                </td>
+                <td>
+                    Структурное подразделение
+                </td>
+                <td>
+                    Отметка о задолженности
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each obj.okno}}
+            <tr>
+                <td>
+                    1   
+                </td>
+                <td class="text-start">
+                    {{
+                        okno_title
+                    }}
+                </td>
+                <td>
+                    {{#if dolg}}
+                        Есть задолженности
+                    {{else}}
+                        Задолженности нет
+                    {{/if}}
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    <p class="text-start text_norm mtb18">
+        Дата сдачи обходного листа в отдел кадров «_____» __________________202__ г.
+    </p>
+
+    <div class="type-docs">
+        <p class="title">
+            Получил(а) (указать вид документа):
+        </p>
+        <p>
+            <span class="req-lar" >
+            </span>
+            - диплом о высшем образовании; 
+        </p>
+        <p>
+            <span class="req-lar" >
+            </span>
+            - аттестат о среднем общем образовании;
+        </p>
+        <p>
+            <span class="req-lar" >
+            </span>
+            - диплом о среднем профессиональном образовании;
+        </p>
+        <p>
+            <span class="req-lar" >
+            </span>
+            - результаты ОРТ (копия). 
+        </p>
+    </div>
+
+    <div class="demand_footer">
+        
+        <div class="footer_kadr">
+            <div class="footer_space">
+                <p class="footer_title">Отдел кадров</p>
+                <p class="footer_subtitle" style="visibility: hidden;">
+                    asd
+                </p>
+            </div>
+            <div class="footer_space">
+                <p>_____________________</p>
+                <p class="footer_subtitle">
+                    (Ф.И.О.)
+                </p>
+            </div>
+        </div>
+        <div class="footer_space">
+            <p>_____________________</p>
+            <p class="footer_subtitle">
+                (Подпись)
+            </p>
+        </div>
+        <p>
+            «_____» _______202__ г.
+        </p>
+        
+    </div>
+    <table>
+        <thead>
+            <tr style="background-color: #bee3f8;">
+                <td>
+                    Примечание
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    </div>
+
+       <script >
+        new QRCode(document.querySelector(".qrcode"), document.querySelector(".qrcode").id);
+        document.querySelector("#print").onclick = function() {
+            window.print();
+        }
+    </script>
+    <script src="/js/print.js"></script>

@@ -1,0 +1,183 @@
+.demand *{
+  margin: 0;
+  padding: 0;
+  margin-bottom: 10px;
+  
+}
+body{
+  background-color: rgb(170, 170, 170);
+}
+.demand{
+  width: 210mm!important;
+  margin: 0 auto;
+  font-size: 13px;
+  font-family: "Times New Roman";
+  font-weight: 700;
+  margin-top: 40px!important;
+  background-color: #fff;
+  padding: 10mm 10mm 10mm 20mm;
+  min-height: 270mm;
+  margin-bottom: 48px;
+}
+
+.demand_top{
+  display: flex;
+  justify-content: space-between;
+}
+.demand-top_left{
+  width: 100%;
+}
+
+.demand h2{
+  font-size: 14px;
+  text-align: center;
+
+}
+
+#qrcode{
+  width: 75px;
+}
+
+#qrcode canvas{
+  width: 75px;
+}
+
+#qrcode img{
+  width: 75px;
+}
+
+.demand h5{
+  font-size: 14px;
+  text-align: center;
+  
+}
+.demand_stud{
+  display: flex;
+  margin: 5px;
+  margin-left: 0;
+  font-weight: 600;
+}
+.stud_name{
+  width: 65mm !important;
+  margin: 0;
+}
+.stud_content{
+  width: 110mm !important;
+  margin: 0;
+}
+
+.demand p{
+  font-size: 14px;
+  text-align: center;
+  
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid grey;
+  width: 100%;
+  font-weight: 400;
+}
+
+tbody{
+  border: 1px solid grey !important;
+}
+
+td, th {
+  border: 1px solid grey;
+  text-align: left;
+  padding: 0 4px;
+  text-align: center;
+}
+td{
+  padding: 0px 5px !important;
+  height: 20px !important;
+}
+/*   
+tr:nth-child(even) {
+  background-color: #dddddd;
+} */
+
+thead{
+  font-weight: 600;
+}
+
+
+
+header {
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  margin: auto;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.text-end{
+  text-align: end;
+}
+.text7{
+  font-weight: 700;
+}
+
+.text-start{
+  text-align: start !important;
+}
+.req-lar{
+  padding: 1px 8px;
+  height: 20px;
+  border: 0.5px solid #000;
+  margin-right: 6px;
+}
+.type-docs{
+  padding-left: 93px;
+}
+
+.type-docs p{
+  text-align: start;
+  font-weight: normal;
+}
+
+.type-docs .title{
+  font-style: italic;
+  font-weight: 700;
+}
+
+.demand_footer{
+  display: grid;
+  grid-template-columns: 1fr 35mm 50mm;
+  grid-gap: 34px;
+  margin-top: 34px;
+}
+.demand_footer *{
+  margin: auto;
+}
+
+.footer_kadr{
+  display: flex;
+  font-weight: normal;
+}
+
+.footer_title{
+  margin-right: 12px;
+  font-weight: normal;
+}
+.footer_subtitle{
+  font-weight: normal;
+  font-size: 8px !important;
+}
+.mtb18{
+  margin: 18px 0;
+}
+.w180{
+  width: 180px !important;
+}
+.mt6{
+  margin-top: 6px;
+}
+.text_norm{
+  font-weight: normal;
+}

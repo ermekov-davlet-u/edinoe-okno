@@ -44,13 +44,19 @@ app.use(translator);
 app.use(logger("dev"));
 
 const log1 = async (req, res, next) => {
-  console.log('====================================');
-  console.log('1111111', req.url);
-  console.log('====================================');
   next()
 }
 
 app.use("/api/okno",log1, authRouter);
+app.get("/bypass-sheet",(req, res) => {
+  console.log(req.url);
+  const data = {
+    id: 45,
+    name: "AVN"
+  }
+
+  res.render("demandMill", {name: "Давлет", age: 22, hobby: "Изучать javascript", url: "http://localhost:3009/bypass-sheet?id_group=10236&id_protocols=505720&id_student=135075"});
+});
 app.use("/", indexRouter);
 app.use(express.static(path.join(__dirname, "public")));
 

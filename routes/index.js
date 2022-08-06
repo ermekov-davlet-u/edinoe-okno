@@ -84,6 +84,7 @@ router.use("/report", srudentReportController)
 router.use("/regis", require("../controller/registration/academDocs"))
 router.use("/local", require("../controller/localy/localyController"))
 router.use("/addition", require("../controller/addition/index.js"))
+router.use("/okno", require("../controller/okno.js"))
 
 // const { studentServices } = require('../routes/student_service/index')
 

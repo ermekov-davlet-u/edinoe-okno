@@ -108,16 +108,24 @@ async function reportTypelist() {
       let r = await pool
         .request()
         .query(`exec SP_BT_student_obhodnoi_report 
-                            @id_group = ${id_group},
-                            @id_student = ${id_student},
-                            @id_protocols= ${id_protocols}`);
+        @id_group = 3951,
+        @id_student = 34665,
+        @id_protocols= 66967`);
   
       if (
         r &&
         r.recordsets &&
         r.recordsets.length 
-      )
-        return({ ObhodnoiList: r.recordsets });
+      ){
+
+      const obj = {
+        vuz: r.recordsets[0][0],
+        osn: r.recordsets[1][0],
+        duty: r.recordsets[2][0],
+        okno: r.recordsets[3],
+      }
+        return obj;
+    }
       else return({ ObhodnoiList: [] });
     } catch (err) {
       console.log("ObhodnoiList error", err.message);

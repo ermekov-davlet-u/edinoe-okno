@@ -5,7 +5,7 @@ async function getOkno(){
         const pool = await poolPromise;
         let r = await pool
           .request()
-          .query(`SELECT * FROM [AVN].[dbo].[Okno_dopolnitelno]`);
+          .query(`SELECT *, id_okno_dopolnitelno as id FROM [AVN].[dbo].[Okno_dopolnitelno]`);
     
         if (
           r &&
@@ -45,7 +45,7 @@ async function getSpecial(search_special, pageNum) {
         const pool = await poolPromise;
         let r = await pool
             .request()
-            .query(search_special ? `SELECT * FROM [AVN].[dbo].[special] where [p25-2] like '%${search_special}%'` :
+            .query(search_special ? `SELECT *, id_special as id, [p25-2] as p24, p25_2k as p24_kg FROM [AVN].[dbo].[special] where [p25-2] like '%${search_special}%'` :
                 `exec SP_Special_Pagination @pageNum  = ${pageNum} ,@pageSize  =20 `);
 
         if (
@@ -55,7 +55,7 @@ async function getSpecial(search_special, pageNum) {
         r.recordsets[0] &&
         r.recordsets[0].length
         )
-        return({ SpecialList: r.recordsets });
+        return({ SpecialList: r.recordset });
         else return({ SpecialList: [] });
     } catch (err) {
         console.log("SpecialList error", err.message);
@@ -83,13 +83,12 @@ async function setSpecial(id_AVN_User, setAcademKG, setAcademEN, id_special) {
   
   
 async function getDirection(search_direction, pageNum) {
-    console.log(search_direction ? `SELECT * FROM [AVN].[dbo].[direction]where [p24-2] like '%${search_direction}%'` :
-    `exec SP_Direction_Pagination @pageNum  = ${pageNum} ,@pageSize  = 20 `);
+
     try {
         const pool = await poolPromise;
         let r = await pool
             .request()
-            .query(search_direction ? `SELECT * FROM [AVN].[dbo].[direction]where [p24-2] like '%${search_direction}%'` :
+            .query(search_direction ? `SELECT *, id_direction  as id, [p24-2] as p24, [p24-2_kg] as p24_kg FROM [AVN].[dbo].[direction]where [p24-2] like '%${search_direction}%'` :
                 `exec SP_Direction_Pagination @pageNum  = ${pageNum} ,@pageSize  =20 `);
         if (
         r &&
@@ -112,7 +111,7 @@ async function setDirection(id_AVN_User, setAcademKG, setAcademEN, id_direction)
         let r = await pool.request().query(`UPDATE [AVN].[dbo].[direction]
             SET 
                 [p24-2_kg] = '${setAcademKG}'
-                ,[p24_2_en] = '${setAcademEN}'
+                ,[p24-2_en] = '${setAcademEN}'
             WHERE id_direction=${id_direction}`);
 
         if (r && r.rowsAffected && r.rowsAffected.length)
@@ -130,7 +129,7 @@ async function getDiscipline(search_discipline, pageNum){
         const pool = await poolPromise;
         let r = await pool
         .request()
-        .query(search_discipline ? `SELECT * FROM [AVN].[dbo].[discipline]where p34 like '%${search_discipline}%'` :
+        .query(search_discipline ? `SELECT *, id_discipline as id, [p34] as p24, [p34_kg] as p24_kg FROM [AVN].[dbo].[discipline]where p34 like '%${search_discipline}%'` :
             `exec SP_Discipline_Pagination @pageNum  = ${pageNum} ,@pageSize  =20 `);
 
         if (
@@ -140,7 +139,7 @@ async function getDiscipline(search_discipline, pageNum){
         r.recordsets[0] &&
         r.recordsets[0].length
         )
-        return({ DisciplineList: r.recordsets });
+        return({ DisciplineList: r.recordset });
         else return({ DisciplineList: [] });
     } catch (err) {
         console.log("DisciplineList error", err.message);
@@ -154,7 +153,7 @@ async function setDiscipline(id_AVN_User, setAcademKG, setAcademEN, id_disciplin
         let r = await pool.request().query(`UPDATE [AVN].[dbo].[discipline]
         SET 
             p34_kg = '${setAcademKG}'
-            ,p34_en = '${setAcademEN}'
+            ,[p24-2_en] = '${setAcademEN}'
     WHERE id_discipline=${id_discipline}`);
 
         if (r && r.rowsAffected && r.rowsAffected.length)
