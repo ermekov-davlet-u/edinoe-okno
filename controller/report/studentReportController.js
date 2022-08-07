@@ -59,8 +59,6 @@ router.get("/obhodnoi-list", async function (req, res, next) {
     try {
         const { id_group, id_student, id_protocols } = req.body
         const result = await reportService.obhodnoiList(id_group, id_student, id_protocols);
-        const obj = result
-        console.log(obj.okno)
         res.render("bypass", {obj: result});
     } catch (err) {
       console.log("ObhodnoiList error", err.message);
@@ -81,11 +79,11 @@ router.post("/voenkom", async function (req, res, next) {
   
   });
   
-router.post("/studing", async function (req, res, next) {
+router.get("/studing", async function (req, res, next) {
     try {
         const { id_group, id_student, id_faculty } = req.body
         const result = await reportService.studing(id_group, id_student, id_faculty);
-        res.send({ ReportsList: result });
+        res.render( "educdemand" , { obj: result });
     } catch (err) {
       console.log("Studing error", err.message);
       res.send({ Studing: [] });
