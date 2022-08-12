@@ -5,22 +5,42 @@
 <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@gh-pages/qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     
- 
+ <div class='D_main_header'>
+    <header>
+        <div class='SpravkaObOkonch_input'>
+            <input value="Справка выдана по месту требования." type="text" id="registerInputs">
+            <p>Изменить место требования</p>
+        </div>
+        <h2>Справка об обучении</h2>
+        <div class="none" style="padding:20px">
+            {{!-- 
+             --}}
+            <button onclick="myPrintFunction()" class="btnPrint">Печать</button>
+        </div>
+    </header>
+</div>
 <div class="demand SpravkaObObuch ">
         <div class="demand_top">
             <div class="top-left" style="width: 280px;">
                 <h2 class="top-left_title">
-                    МИНИСТЕРСТВО ОБРАЗОВАНИЯ И НАУКИ КЫРГЫЗСКОЙ РЕСПУБЛИКИ
+                    {{
+                        obj.vuz.mo
+                    }}
                 </h2>
                 <p class="text_norm top-left_text">
-                    Ошский государственный университет
+                    {{
+                        obj.vuz.v2
+                    }}
                 </p>
                 <p class="text_norm top-left_text">
-                    Высшая школа международных образовательных программ
+                    {{
+                        obj.vuz.faculty
+                    }}
                 </p>
                 <p class="top_adr text_norm">
-                    г. Ош, ул. Ленина 331
-                    тел:
+                    {{
+                        obj.vuz.adres
+                    }}
                 </p>
             </div>
             <div class="demand-top_left">
@@ -31,43 +51,53 @@
                     Настоящая справка подтверждает то, что
                 </h5>
                 <p class=" italic">
-                    Бакытбек к Айназик
+                    {{
+                        obj.faculty.s_fio
+                    }}
                 </p>
                 <p class="text-norm" style="width: 380px; margin: 0 auto    ;">
-                    действительно является студенткой 1-курса группы ЕВ(б)-1-21 направления "undefined" (очная бакалавр).
+                    действительно является {{ obj.stud }} {{
+                        obj.faculty.id_rate
+                    }}-курса группы {{
+                        obj.faculty.p20
+                    }} направления ({{obj.faculty.p20}}).
                 </p>
             </div>
         </div>
     <p class="text_norm">
         Общий срок обучения: 4 года.
     </p>
-    <p class="text_norm">
+    <p class="text_norm" id="resultasd">
         Справка выдана по месту требования.
     </p>
-    
     <div class="educ_footer">
         <div class="educ-footer_left">
             <div id="sadas" class="qrcode" ></div>
             <p>
-                06.08.2022 г., Инзильев Н. .
+                {{ obj.data }} г., {{ obj.user }}
             </p>
         </div>
         <div class="educ-footer_right">
             <p class="educ-footer_right_first">
-                Главный специалист Единого окна
+                {{
+                    obj.post.insert_pole
+                }}
             </p>
             <p class="educ-footer_right_second">
-                ФИО_____________________________
+                {{
+                    obj.insPole.insert_pole
+                }}
             </p>
         </div>
     </div>
-
     </div>
 
-       <script >
+    <script type="text/javascript" >
         new QRCode(document.querySelector(".qrcode"), document.querySelector(".qrcode").id);
-        document.querySelector("#print").onclick = function() {
-            window.print();
+    
+        document.querySelector("#registerInputs").oninput = function() {
+            document.querySelector('#resultasd').innerHTML = document.querySelector("#registerInputs").value;
         }
+
     </script>
     <script src="/js/print.js"></script>

@@ -99,7 +99,7 @@ async function getStudentExam(id, gid) {
             return 500;
         }
     } catch (err) {
-        // // console.log('error, no data', err)     
+        console.log('error, no data', err)     
         return 500;
     }
 }
@@ -119,12 +119,12 @@ async function getDisciplineList(id, gid) {
             });
             return result.recordsets[0]
         } else {
-            // // console.log('error, no data')
+            // console.log('error, no data')
             return 500;
         }
 
     } catch (err) {
-        // // console.log('error, no data', err)     
+         console.log('error, no data', err)     
 
         return 500;
     }
@@ -149,7 +149,7 @@ async function getStudentList(user, text) {
             return 500;
         }
     } catch (err) {
-        // // console.log('error, no data', err)     
+        console.log('error, no data', err)     
 
         return 500;
     }

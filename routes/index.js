@@ -44,7 +44,6 @@ router.use(function (req, res, next) {
 // router.use(require("./apiTranscript"))
 // router.use(require("./apiTranscriptQR"))
 router.get('/academ', academController.academ)
-
 router.post("/auth/check", authController.checkLogin)
 router.post("/auth/login", authController.postLogin)
 router.post("/auth/logout", authController.logout)

@@ -1,4 +1,5 @@
 const { poolPromise } = require("../db");
+const _ = require("lodash");
 
 async function reportTypelist() {
     try {
@@ -108,9 +109,9 @@ async function reportTypelist() {
       let r = await pool
         .request()
         .query(`exec SP_BT_student_obhodnoi_report 
-        @id_group = 3951,
-        @id_student = 34665,
-        @id_protocols= 66967`);
+        @id_group = ${id_group},
+        @id_student = ${id_student},
+        @id_protocols= ${id_protocols}`);
   
       if (
         r &&
@@ -121,7 +122,7 @@ async function reportTypelist() {
       const obj = {
         vuz: r.recordsets[0][0],
         osn: r.recordsets[1][0],
-        duty: r.recordsets[2][0],
+        duty: r.recordsets[2],
         okno: r.recordsets[3],
       }
         return obj;
@@ -152,8 +153,19 @@ async function reportTypelist() {
         r.recordsets.length &&
         r.recordsets[0] &&
         r.recordsets[0].length
-      )
-        return({ VoenKom: r.recordsets });
+      ){
+        const obj = {
+          vuz: r.recordsets[0][0],
+          studInfo: r.recordsets[1][0],
+          trans: r.recordsets[2],
+          raion: r.recordsets[3][0],
+          pole1: r.recordsets[4][0],
+          pole2: r.recordsets[5][0],
+          pole3: r.recordsets[6][0],
+          pole4: r.recordsets[7][0],
+      }
+        return(obj);
+        }
       else return({ VoenKom: [] });
     } catch (err) {
       console.log("VoenKom error", err.message);
@@ -165,22 +177,32 @@ async function reportTypelist() {
   async function studing(id_group, id_student, id_faculty) {
     try {
       const pool = await poolPromise;
+      console.log(id_group, id_student, id_faculty);
       let r = await pool
         .request()
         .query(`
-        EXEC SP_BT_student_report_of_studing
-            @id_group = ${id_group},
-            @id_student = ${id_student},
-            @id_faculty = ${id_faculty}`);
-  
+          EXEC SP_BT_student_report_of_studing
+              @id_group = ${id_group},
+              @id_student = ${id_student},
+              @id_faculty = ${id_faculty}
+              `
+            );
       if (
         r &&
         r.recordsets &&
         r.recordsets.length &&
         r.recordsets[0] &&
         r.recordsets[0].length
-      )
-        return({ Studing: r.recordsets });
+      ){
+        const obj = {
+          vuz: r.recordsets[0][0],
+          faculty: r.recordsets[1][0],
+          unKnown: r.recordsets[2],
+          post: r.recordsets[3][0],
+          insPole: r.recordsets[4][0]
+        }
+        return ( obj );
+        }
       else return({ Studing: [] });
     } catch (err) {
       console.log("Studing error", err.message);
@@ -195,7 +217,7 @@ async function reportTypelist() {
       let r = await pool
         .request()
         .query(`
-        EXEC	SP_BT_student_report_of_leave  @id_student = ${20302}`);
+        EXEC	SP_BT_student_report_of_leave  @id_student = ${id_student}`);
   
       if (
         r &&
@@ -211,6 +233,79 @@ async function reportTypelist() {
       return({ Leave: [] });
     }
   }
+
+  async function trunscript( id_student, id_group ) {
+    try {
+      const pool = await poolPromise;
+      let r = await pool
+        .request()
+        .query(`
+        EXEC	SP_TRANSCRIPT  @st = ${id_student}, @gr=${id_group}`);
+  
+      console.log(r.recordsets);
+      if (
+        r &&
+        r.recordsets &&
+        r.recordsets.length &&
+        r.recordsets[0] &&
+        r.recordsets[0].length
+      ){
+        
+
+      const json = r.recordsets
+
+
+        const results = await _.chain(json[0])
+        .groupBy("id_group")
+        .map((value) => ({
+            mo: value[0].mo,
+            v2: value[0].v2,
+            spec: value[0].spec,
+            faculty: value[0]['p23-2'],
+            s_fio: value[0].s_fio,
+            idid: value[0].idid,
+            BirthDate: value[0].BirthDate,
+            kredits_avg: value[0].kredits_avg,
+            kredits_sum: value[0].kredits_sum,
+            vxGroup_TR_by_id_a_year: _.chain(value)
+                .groupBy("id_a_year")
+                .map((by_year) => ({
+                    p32: by_year[0].p32,
+                    vxGroup_TR_by_id_w_s: _.chain(by_year)
+                        .groupBy("ws_sort")
+                        // .orderBy('ws_sort', 'desc')
+                        .map((by_w_s) => ({
+                            p42: by_w_s[0].p42,
+                            vxDisciplineList: _.chain(by_w_s)
+                                .map((discipline) => ({
+                                    p32: discipline.p32,
+                                    p42: discipline.p42,
+                                    code_discipline: discipline.code_discipline,
+                                    p34: discipline.p34,
+                                    p30: discipline.p30,
+                                    kredits: discipline.kredits,
+                                    ekv_num: discipline.ekv_num,
+                                    ekv_bukv: discipline.ekv_bukv,
+                                    p31: discipline.p31,
+                                }))
+                                .value()
+                        }))
+                        .value()
+                }))
+                .value()
+        }))
+        .value()
+        return({
+          obj: results[0],
+          dop: results[1]
+        });
+      }
+      else return( [] );
+    } catch (err) {
+      console.log("Leave error", err.message);
+      return({ Leave: [] });
+    }
+  }
   
   module.exports = {
     reportTypelist,
@@ -221,5 +316,6 @@ async function reportTypelist() {
     obhodnoiList,
     voenkom,
     studing,
-    leave
+    leave,
+    trunscript
   }

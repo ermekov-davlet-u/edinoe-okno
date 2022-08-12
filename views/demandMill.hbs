@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="/css/demand.css" />
 <link rel = "stylesheet" media = "print" href = "/css/myprint.css">
 <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@gh-pages/qrcode.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <style>
 </style>
 <div class='D_main_header'>
@@ -14,7 +14,7 @@
                 <p>Изменить Регистрационный номер</p>
             </button>
         </div>
-        <h2>Академическая справка</h2>
+        <h2>ТРАНСКРИПТ</h2>
         <div class="none" style="padding:20px">
             {{!-- 
              --}}
@@ -28,19 +28,25 @@
         <div class="demand_top">
             <div class="demand-top_left">
                 <h2>
-                    МИНИСТЕРСТВО ОБРАЗОВАНИЯ И НАУКИ КЫРГЫЗСКОЙ РЕСПУБЛИКИ
+                    {{
+                        obj.obj.mo
+                    }}
                 </h2>
                 <h5>
-                    Ошский государственный университет
+                    {{
+                        obj.obj.v2
+                    }}
                 </h5>
                 <h5>
-                    Высшая школа международных образовательных программ
+                    {{
+                        obj.obj.spec
+                    }}
                 </h5>
                 <h2>
                     ТРАНСКРИПТ
                 </h2>
             </div>
-            <div id={{url}} class="qrcode" ></div>
+            <div id="http://localhost:3009/report/trunscript?id_group=3109&id_student=29925&id_faculty=2" class="qrcode" ></div>
         </div>
 
     <div class="demand_stud"> 
@@ -48,7 +54,9 @@
             ФИО:
         </span>
         <span class="stud_content">
-            ДЖУМАНАЗАРОВА АЙЗАТ АБДУВАЛИЕВНА
+            {{
+                obj.obj.s_fio
+            }}
         </span>
     </div>
     <div class="demand_stud"> 
@@ -56,7 +64,9 @@
             ID студента:
         </span>
         <span class="stud_content">
-            21\44504
+            {{
+                obj.obj.idid
+            }}
         </span>
     </div>
     <div class="demand_stud"> 
@@ -64,7 +74,9 @@
             Дата рождения:
         </span>
         <span class="stud_content">
-            16.06.2003
+            {{
+                obj.obj.BirthDate
+            }}
         </span>
     </div>
     <div class="demand_stud"> 
@@ -72,7 +84,9 @@
             Направление:
         </span>
         <span class="stud_content">
-            Международный бизнес (очная бакалавр) (ВШМОП)
+            {{
+                obj.obj.faculty
+            }}
         </span>
     </div>
     <div class="demand_stud"> 
@@ -80,7 +94,9 @@
             Общий GPA:
         </span>
         <span class="stud_content">
-            3.32
+            {{
+                obj.obj.kredits_avg
+            }}
         </span>
     </div>
     <div class="demand_stud"> 
@@ -88,393 +104,128 @@
             Всего зарегистрированых кредитов:
         </span>
         <span class="stud_content">
-            60
+            {{
+                obj.kredits_sum
+            }}
         </span>
     </div>
 
-    <p>
-        2021-22 учебный год
-    </p>
-    <p>
-        Осений семестр
-    </p>
-    <table>
-        <thead>
-            <tr>
-                <td>
-                    Код дисциплины
-                </td>
-                <td>
-                    Дисциплина
-                </td>
-                <td>
-                    Форма контроли
-                </td>
-                <td>
-                    Кол. кредитов
-                </td>
-                <td>
-                    Цифр. Эквив.
-                </td>
-                <td>
-                    Буквен. система
-                </td>
-                <td>
-                    Традиц. ситема
-                </td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
+    {{#each obj.obj.vxGroup_TR_by_id_a_year}}
 
-                </td>
-                <td class="text-start">
-                    Концепция современного естествознания
-                </td>
-                <td>
-                    Экзамен
-                </td>
-                <td>
-                    4
-                </td>
-                <td>
-                    4
-                </td>
-                <td>
-                    A
-                </td>
-                <td>
-                    отл
-                </td>
-            </tr>
-            <tr>
-                <td>
+    <div class="trunscript_year"> 
+        <p>
+            {{
+                p32
+            }}
+        </p>
+        {{#each vxGroup_TR_by_id_w_s}}
+            <p>
+                {{
+                    p42
+                }}
+            </p>
+            <table>
+                <thead>
+                    <tr >
+                        <td style="text-align: center; font-weight: 700;">
+                            Код дисциплины
+                        </td>
+                        <td style="font-weight: 700; width: 380px">
+                            Дисциплина
+                        </td>
+                        <td style="font-weight: 700;">
+                            Форма контроли
+                        </td>
+                        <td style="font-weight: 700;">
+                            Кол. кредитов
+                        </td>
+                        <td style="font-weight: 700;">
+                            Цифр. Эквив.
+                        </td>
+                        <td style="font-weight: 700;">
+                            Буквен. система
+                        </td>
+                        <td style="font-weight: 700;">
+                            Традиц. ситема
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+            {{#each vxDisciplineList}}
+                    <tr>
+                        <td>
 
-                </td>
-                <td class="text-start">
-                    Концепция современного естествознания
-                </td>
-                <td>
-                    Экзамен
-                </td>
-                <td>
-                    4
-                </td>
-                <td>
-                    4
-                </td>
-                <td>
-                    A
-                </td>
-                <td>
-                    отл
-                </td>
-            </tr>
-            <tr>
-                <td>
+                        </td>
+                        <td class="text-start">
+                            {{
+                                p34
+                            }}
+                        </td>
+                        <td>
+                            {{
+                                p30
+                            }}
+                        </td>
+                        <td>
+                            4
+                        </td>
+                        <td>
+                            {{
+                                kredits
+                            }}
+                        </td>
+                        <td>
+                            {{
+                                ekv_bukv
+                            }}
+                        </td>
+                        <td>
+                            {{
+                                p31
+                            }}
+                        </td>
+                    </tr>
+                    
 
-                </td>
-                <td class="text-start">
-                    Концепция современного естествознания
-                </td>
-                <td>
-                    Экзамен
-                </td>
-                <td>
-                    4
-                </td>
-                <td>
-                    4
-                </td>
-                <td>
-                    A
-                </td>
-                <td>
-                    отл
-                </td>
-            </tr>
-            <tr>
-                <td>
+            {{/each}}
 
-                </td>
-                <td class="text-start">
-                    Концепция современного естествознания
-                </td>
-                <td>
-                    Экзамен
-                </td>
-                <td>
-                    4
-                </td>
-                <td>
-                    4
-                </td>
-                <td>
-                    A
-                </td>
-                <td>
-                    отл
-                </td>
-            </tr>
             <tr>
-                <td>
+                        <td>
 
-                </td>
-                <td class="text-start">
-                    Концепция современного естествознания
-                </td>
-                <td>
-                    Экзамен
-                </td>
-                <td>
-                    4
-                </td>
-                <td>
-                    4
-                </td>
-                <td>
-                    A
-                </td>
-                <td>
-                    отл
-                </td>
-            </tr>
-            <tr>
-                <td>
+                        </td>
+                        <td class="text-end text7" style="font-size: 14px;">
+                            Зарегистрировано кредитов:
+                        </td>
+                        <td>
+                            30	
+                        </td>
+                        <td>
 
-                </td>
-                <td class="text-start">
-                    Концепция современного естествознания
-                </td>
-                <td>
-                    Экзамен
-                </td>
-                <td>
-                    4
-                </td>
-                <td>
-                    4
-                </td>
-                <td>
-                    A
-                </td>
-                <td>
-                    отл
-                </td>
-            </tr>
-            <tr>
-                <td>
+                        </td>
+                        <td class="text-end text7" style="font-size: 14px;">
+                            Всего зарегистрированых кредитов:
+                        </td>
+                        <td>
+                            {{
+                                obj.obj.kredits_sum
+                            }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
 
-                </td>
-                <td class="text-end text7">
-                    Зарегистрировано кредитов:
-                </td>
-                <td>
-                    30	
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <p>
-        Весенний семестр
-    </p>
-    <table>
-        <thead>
-            <tr>
-                <td>
-                    Код дисциплины
-                </td>
-                <td>
-                    Дисциплина
-                </td>
-                <td>
-                    Форма контроли
-                </td>
-                <td>
-                    Кол. кредитов
-                </td>
-                <td>
-                    Цифр. Эквив.
-                </td>
-                <td>
-                    Буквен. система
-                </td>
-                <td>
-                    Традиц. ситема
-                </td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
+            
+        {{/each}}
+    </div>
+    {{/each}}
 
-                </td>
-                <td class="text-start">
-                    Концепция современного естествознания
-                </td>
-                <td>
-                    Экзамен
-                </td>
-                <td>
-                    4
-                </td>
-                <td>
-                    4
-                </td>
-                <td>
-                    A
-                </td>
-                <td>
-                    отл
-                </td>
-            </tr>
-            <tr>
-                <td>
-
-                </td>
-                <td class="text-start">
-                    Концепция современного естествознания
-                </td>
-                <td>
-                    Экзамен
-                </td>
-                <td>
-                    4
-                </td>
-                <td>
-                    4
-                </td>
-                <td>
-                    A
-                </td>
-                <td>
-                    отл
-                </td>
-            </tr>
-            <tr>
-                <td>
-
-                </td>
-                <td class="text-start">
-                    Концепция современного естествознания
-                </td>
-                <td>
-                    Экзамен
-                </td>
-                <td>
-                    4
-                </td>
-                <td>
-                    4
-                </td>
-                <td>
-                    A
-                </td>
-                <td>
-                    отл
-                </td>
-            </tr>
-            <tr>
-                <td>
-
-                </td>
-                <td class="text-start">
-                    Концепция современного естествознания
-                </td>
-                <td>
-                    Экзамен
-                </td>
-                <td>
-                    4
-                </td>
-                <td>
-                    4
-                </td>
-                <td>
-                    A
-                </td>
-                <td>
-                    отл
-                </td>
-            </tr>
-            <tr>
-                <td>
-
-                </td>
-                <td class="text-start">
-                    Концепция современного естествознания
-                </td>
-                <td>
-                    Экзамен
-                </td>
-                <td>
-                    4
-                </td>
-                <td>
-                    4
-                </td>
-                <td>
-                    A
-                </td>
-                <td>
-                    отл
-                </td>
-            </tr>
-            <tr>
-                <td>
-
-                </td>
-                <td class="text-start">
-                    Концепция современного естествознания
-                </td>
-                <td>
-                    Экзамен
-                </td>
-                <td>
-                    4
-                </td>
-                <td>
-                    4
-                </td>
-                <td>
-                    A
-                </td>
-                <td>
-                    отл
-                </td>
-            </tr>
-            <tr>
-                <td>
-
-                </td>
-                <td class="text-end text7">
-                    Зарегистрировано кредитов:
-                </td>
-                <td>
-                    30	
-                </td>
-            </tr>
-            <tr>
-                <td>
-
-                </td>
-                <td class="text-end text7">
-                    Зарегистрировано кредитов:
-                </td>
-                <td>
-                    30	
-                </td>
-            </tr>
-        </tbody>
-    </table>
+        
+    
 
     </div>
 
     <script >
         new QRCode(document.querySelector(".qrcode"), document.querySelector(".qrcode").id);
-        document.querySelector("#print").onclick = function() {
-            window.print();
-        }
+
     </script>
-    <script src="/js/print.js"></script>
+    

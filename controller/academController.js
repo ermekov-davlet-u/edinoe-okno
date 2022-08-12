@@ -10,9 +10,8 @@ class AcademController {
         try {
 
             // console.time("all query time");
-            const user = req.user;
-            const { id, gid } = req.query
-            console.log({ id, gid, user })
+            const user = 152
+            const { id = 23, gid = 22 } = req.query
             if (!id || !gid) return res.redirect('/')
 
             // console.time("getDisciplineList");

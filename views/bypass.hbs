@@ -5,6 +5,23 @@
 <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@gh-pages/qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     
+<div class='D_main_header'>
+    <header>
+        <div class='SpravkaObOkonch_input'>
+            <input type="text" id="registerInput">
+            <button class="btnChange" id="registerChange">
+                <p>Изменить Регистрационный номер</p>
+            </button>
+        </div>
+        <h2>ОБХОДНОЙ ЛИСТ</h2>
+        <div class="none" style="padding:20px">
+            {{!-- 
+             --}}
+            <button onclick="myPrintFunction()" class="btnPrint">Печать</button>
+        </div>
+    </header>
+</div>
+
     <div class="demand">
 
         <div class="demand_top">
@@ -170,15 +187,22 @@
         <thead>
             <tr style="background-color: #bee3f8;">
                 <td>
-                    Примечание
+                    <p>
+                        Примечание
+                    </p>
                 </td>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>
-                </td>
-            </tr>
+            {{#each obj.duty}}
+                <tr>
+                    <td>
+                        {{
+                            okno_description
+                        }}
+                    </td>
+                </tr>
+            {{/each}}
         </tbody>
     </table>
 

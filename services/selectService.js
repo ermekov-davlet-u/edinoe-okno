@@ -54,12 +54,7 @@ async function educFaculty() {
 async function educFEduc() {
     try {
         const pool = await poolPromise;
-        const r = await pool.request().query(`SELECT dbo.f_educ.id_f_educ as value, dbo.f_educ.p108 as label
-            FROM dbo.f_educ INNER JOIN dbo.User_f_educ ON dbo.f_educ.id_f_educ = dbo.User_f_educ.id_f_educ
-            WHERE dbo.User_f_educ.id_login = 5090
-            GROUP BY dbo.f_educ.id_f_educ, dbo.f_educ.p108
-            ORDER BY dbo.f_educ.p108
-        `)
+        const r = await pool.request().query(`SP_BT_f_educ_select @id_login=5090`)
     if (
         r &&
         r.recordsets &&
@@ -91,10 +86,6 @@ async function educRate(){
 
 async function educGroup(id_year,id_faculty,id_f_educ,id_rate){
     try {
-        console.log(id_year,
-            id_faculty,
-            id_f_educ,
-            id_rate)
         const pool = await poolPromise;
         const r = await pool.request().query(`exec SP_BT_group_select 
         @id_a_year =${id_year},

@@ -195,13 +195,18 @@ async function teacherReport(id_teacher){
       .query(`
       EXEC	SP_BT_teacher_report
           @id_teacher = ${id_teacher}`);
-
     if (
       r &&
-      r.recordset &&
-      r.recordset.length 
-    )
-      return({ TeacherReport: r.recordset });
+      r.recordsets &&
+      r.recordsets.length 
+    ){
+      const obj = {
+        vuz: r.recordsets[0][0],
+        osn: r.recordsets[1][0],
+        duty: r.recordsets[2]
+      }
+      return(obj);
+    }
     else return({ TeacherReport: [] });
   } catch (err) {
     console.log("TeacherReport error", err.message);

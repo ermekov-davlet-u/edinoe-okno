@@ -1,0 +1,256 @@
+<link rel="stylesheet" href="/css/context.css" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/demand.css" />
+<link rel = "stylesheet" media = "print" href = "/css/myprint.css">
+<script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@gh-pages/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+<div class='D_main_header'>
+    <header>
+        <div class='SpravkaObOkonch_input'>
+            <input type="text" id="registerInput">
+            <button class="btnChange" id="registerChange">
+                <p>Изменить Регистрационный номер</p>
+            </button>
+        </div>
+        <h2>ОБХОДНОЙ ЛИСТ</h2>
+        <div class="none" style="padding:20px">
+            {{!-- 
+             --}}
+            <button onclick="myPrintFunction()" class="btnPrint">Печать</button>
+        </div>
+    </header>
+</div>
+
+    <div class="demand">
+        <div class="demand_top">
+            <div id="http://avn.oshsu.kg:3034/" class="teacher-img_wrap">
+                <img src="{{ obj.photo }}" class="teacher_img" alt="">
+            </div>
+            <div class="demand_top">
+                <div class="demand-top_left">
+                    <h2>
+                        {{
+                            obj.osn.v2
+                        }}
+                    </h2>
+                    <h2>
+                        ОБХОДНОЙ ЛИСТ
+                    </h2>
+
+                    <h2 style="color: #6f8df7; text-transform: uppercase;">
+                        {{
+                            obj.vuz.t_fio
+                        }}
+                    </h2>
+                </div>
+                
+            </div>
+        </div>
+
+    <table class="mt6">
+        <thead>
+            <tr style="background-color: #bee3f8;">
+                <td>
+                    №
+                </td>
+                <td>
+                    Структурное подразделение
+                </td>
+                <td>
+                    Отметка о задолженности
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    1   
+                </td>
+                <td class="text-start">
+                    Материальный бухгалтер
+                </td>
+                <td>
+                    {{#if obj.vuz.t_fio_pole1 }}
+                        Есть задолженности
+                    {{else}}
+                        Задолженности нет
+                    {{/if}}
+                </td>
+            </tr>
+             <tr>
+                <td>
+                    1   
+                </td>
+                <td class="text-start">
+                    Материальный бухгалтер
+                </td>
+                <td>
+                    {{#if obj.vuz.t_fio_pole2 }}
+                        Есть задолженности
+                    {{else}}
+                        Задолженности нет
+                    {{/if}}
+                </td>
+            </tr>
+             <tr>
+                <td>
+                    1   
+                </td>
+                <td class="text-start">
+                    Расчетный бухгалтер
+                </td>
+                <td>
+                    {{#if obj.vuz.t_fio_pole3 }}
+                        Есть задолженности
+                    {{else}}
+                        Задолженности нет
+                    {{/if}}
+                </td>
+            </tr>
+             <tr>
+                <td>
+                    1   
+                </td>
+                <td class="text-start">
+                    Комендант общежития
+                </td>
+                <td>
+                    {{#if obj.vuz.t_fio_pole4 }}
+                        Есть задолженности
+                    {{else}}
+                        Задолженности нет
+                    {{/if}}
+                </td>
+            </tr>
+             <tr>
+                <td>
+                    1   
+                </td>
+                <td class="text-start">
+                    Отдел кадров
+                </td>
+                <td>
+                    {{#if obj.vuz.t_fio_pole5 }}
+                        Есть задолженности
+                    {{else}}
+                        Задолженности нет
+                    {{/if}}
+                </td>
+            </tr>
+             <tr>
+                <td>
+                    1   
+                </td>
+                <td class="text-start">
+                    Кафедра
+                </td>
+                <td>
+                    {{#if obj.vuz.t_fio_pole6 }}
+                        Есть задолженности
+                    {{else}}
+                        Задолженности нет
+                    {{/if}}
+                </td>
+            </tr>
+             <tr>
+                <td>
+                    1   
+                </td>
+                <td class="text-start">
+                    Отдел АХР
+                </td>
+                <td>
+                    {{#if obj.vuz.t_fio_pole7 }}
+                        Есть задолженности
+                    {{else}}
+                        Задолженности нет
+                    {{/if}}
+                </td>
+            </tr>
+             <tr>
+                <td>
+                    1   
+                </td>
+                <td class="text-start">
+                    Бухгалтерия
+                </td>
+                <td>
+                    {{#if obj.vuz.t_fio_pole8 }}
+                        Есть задолженности
+                    {{else}}
+                        Задолженности нет
+                    {{/if}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p class="text_norm mtb18">
+        Дата сдачи обходного листа в отдел кадров «_____» __________________202__ г.
+    </p>
+
+    <p class="text_norm mtb18">
+        Трудовую книжку получил  _________________________ {{ obj.vuz.s_t_fio }}
+    </p>
+
+    
+
+    <div class="demand_footer">
+        <div class="footer_kadr">
+            <div class="footer_space">
+                <p class="footer_title">Отдел кадров</p>
+                <p class="footer_subtitle" style="visibility: hidden;">
+                    asd
+                </p>
+            </div>
+            <div class="footer_space">
+                <p>_____________________</p>
+                <p class="footer_subtitle">
+                    (Ф.И.О.)
+                </p>
+            </div>
+        </div>
+        <div class="footer_space">
+            <p>_____________________</p>
+            <p class="footer_subtitle">
+                (Подпись)
+            </p>
+        </div>
+        <p>
+            «_____» _______202__ г.
+        </p>
+        
+    </div>
+    <table>
+        <thead>
+            <tr style="background-color: #bee3f8;">
+                <td>
+                    <p>
+                        Примечание
+                    </p>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each obj.duty}}
+                <tr>
+                    <td>
+                        {{
+                            okno_description
+                        }}
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    </div>
+
+       <script >
+        new QRCode(document.querySelector(".qrcode"), document.querySelector(".qrcode").id);
+        document.querySelector("#print").onclick = function() {
+            window.print();
+        }
+    </script>
+    <script src="/js/print.js"></script>

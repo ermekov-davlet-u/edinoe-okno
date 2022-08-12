@@ -106,7 +106,7 @@ router.get("/teacher-list", async function (req, res, next) {
     try {
       const { id_teacher } = req.query;
       const result = await teacherService.teacherReport(id_teacher)
-      res.send(result);
+      res.render( "bypassTeacher", { obj: { ...result, data: new Date().toLocaleDateString(), user: "Эрмеков Давлет", photo: "data:image/jpeg;base64," + result.vuz.photo.toString("base64") } } );
     } catch (err) {
       console.log("TeacherReport error", err.message);
       res.send({ TeacherReport: [] });

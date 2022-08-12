@@ -1,0 +1,121 @@
+<link rel="stylesheet" href="/css/context.css" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/demand.css" />
+<link rel = "stylesheet" media = "print" href = "/css/myprint.css">
+<script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@gh-pages/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<style>
+</style>
+<div class='D_main_header'>
+    <header>
+        <div class='SpravkaObOkonch_input'>
+            <input type="text" id="registerInput">
+            <button class="btnChange" id="registerChange">
+                <p>Изменить Регистрационный номер</p>
+            </button>
+        </div>
+        <h2>Соц. фонд</h2>
+        <div class="none" style="padding:20px">
+            {{!-- 
+             --}}
+            <button onclick="myPrintFunction()" class="btnPrint">Печать</button>
+        </div>
+    </header>
+</div>
+
+    <div class="demand social-font">
+            
+        <div class="social-font_header">
+            <p class="text_norm text-start">
+                Дата выдачи 08.08.2022
+            </p>
+            <p class="text_norm text-start">
+                Исх. №__________
+            </p>
+            <p class="text_norm text-start">
+                тел:
+            </p>
+        </div>
+
+        <h4 style="margin-top: 32px;">
+            СПРАВКА
+        </h4>
+        
+
+        <p class="text_norm text-start">
+            Дана гражданке {{ obj.studInfo.s_fio }}, дата рождения: {{ obj.studInfo.BirthDate }} года,
+        </p>
+
+        <p class="text_norm text-start">
+            в том что она действительно является студенткой {{ obj.studInfo.p20 }}, {{ obj.studInfo.id_rate }}-курс, факультет: {{ obj.vuz.faculty }}.
+        </p>
+
+        <p class="text_norm text-start">
+            Форма обучения: {{ obj.studInfo.p108 }}, {{ obj.studInfo.name }}
+        </p>
+        <p class="text_norm text-start">
+            Справка действительна на 2021-22 учебный год
+        </p>
+
+        <p class="text_norm text-start">
+            Управление Социального фонда undefined .
+        </p>
+        <p class="text_norm text-start mt18">
+            Срок обучения в учебном заведении 0 года
+        </p>
+
+        <p class="text_norm text-start">
+            Период обучения с 2020 по 2024 гг.
+        </p>
+
+        <hr>
+
+        <h5 class="text-start">
+            Примечание:
+        </h5>
+        <p class="text_norm text-start">
+            Лицо, выдавшее настоящую справку, несет персональную ответственность за достоверность указанных в ней сведений.
+        </p>
+
+        <p class="text_norm text-start" style="margin-top: 100px;">
+            Место для печати учебного заведения
+        </p>
+
+        <div class="footer_kadr signature">
+            <div class="footer_space">
+                <p class="text_norm footer_title">
+                    {{ obj.pole4.insert_pole }}
+                </p>
+                <p class="footer_title text-start text_norm" style="visibility: hidden;">
+                   sdfsd
+                </p>
+            </div>
+            <div class="footer_space">
+                <p class=" text_norm">_____________________</p>
+                <p class="footer_subtitle text_norm">
+                    (Подпись)
+                </p>
+            </div>
+        </div>
+        <p class="text_norm text-start">
+            Исполнитель:
+        </p>
+        <p class="text_norm text-start">
+            {{ obj.user }}  ,
+        </p>
+        
+        
+        <div class="qrvoenkom">
+            <div></div>
+            <div class="qrcode"></div>
+            </div>
+        </div>
+    </div>
+
+    <script >
+        new QRCode(document.querySelector(".qrcode"), document.querySelector(".qrcode").id);
+        document.querySelector("#print").onclick = function() {
+            window.print();
+        }
+    </script>
+    <script src="/js/print.js"></script>

@@ -9,7 +9,6 @@ router.get("/reportslist", async function (req, res, next) {
       console.log("ReportsList error", err.message);
       res.send({ ReportsList: [] });
     }
-  
   });
 router.get("/reportApplicationWait", async function (req, res, next) {
     try {
@@ -57,9 +56,10 @@ router.post("/reportApplicationUpdate", async function (req, res, next) {
   
 router.get("/obhodnoi-list", async function (req, res, next) {
     try {
-        const { id_group, id_student, id_protocols } = req.body
+        const { id_group, id_student, id_protocols } = req.query
         const result = await reportService.obhodnoiList(id_group, id_student, id_protocols);
-        res.render("bypass", {obj: result});
+        console.log(result);
+        res.render("bypass", {obj: { ...result, data: new Date().toLocaleDateString(), user: "Эрмеков Давлет" }});
     } catch (err) {
       console.log("ObhodnoiList error", err.message);
       res.send({ ObhodnoiList: [] });
@@ -67,11 +67,24 @@ router.get("/obhodnoi-list", async function (req, res, next) {
   
   });
   
-router.post("/voenkom", async function (req, res, next) {
+router.get("/voenkom", async function (req, res, next) {
     try {
-        const { id_group, id_student, id_raion, id_faculty } = req.body
+        const { id_group, id_student, id_raion, id_faculty } = req.query
         const result = await reportService.voenkom(id_group, id_student, id_raion, id_faculty);
-        res.send({ ReportsList: result });
+        res.render("voenkom", { obj: { ...result, data: new Date().toLocaleDateString(), user: "Эрмеков Давлет" } });
+    } catch (err) {
+      console.log("VoenKom error", err.message);
+      res.send({ VoenKom: [] });
+    }
+  
+  });
+
+  router.get("/social-fond", async function (req, res, next) {
+    try {
+        const { id_group, id_student, id_raion, id_faculty } = req.query
+        const result = await reportService.voenkom(id_group, id_student, id_raion, id_faculty);
+        console.log(result);
+        res.render("socFont", { obj: { ...result, data: new Date().toLocaleDateString(), user: "Эрмеков Давлет" }});
     } catch (err) {
       console.log("VoenKom error", err.message);
       res.send({ VoenKom: [] });
@@ -81,9 +94,25 @@ router.post("/voenkom", async function (req, res, next) {
   
 router.get("/studing", async function (req, res, next) {
     try {
-        const { id_group, id_student, id_faculty } = req.body
+        const { id_group, id_student, id_faculty } = req.query
         const result = await reportService.studing(id_group, id_student, id_faculty);
-        res.render( "educdemand" , { obj: result });
+        res.render( "educdemand" , { obj: { ...result, data: new Date().toLocaleDateString(), user: "Эрмеков Давлет", stud: result.faculty.Male? "студентом":"студенткой" } });
+    } catch (err) {
+      console.log("Studing error", err.message);
+      res.send({ Studing: [] });
+    }
+  
+  });
+
+  router.get("/trunscript", async function (req, res, next) {
+    try {
+        const { id_group, id_student } = req.query
+        const result = await reportService.trunscript( id_student, id_group );
+        if(result.length){
+          res.render( "demandMill" , { obj: { ...result, data: new Date().toLocaleDateString(), user: "Эрмеков Давлет" } });
+        }else{
+          res.send( "<h2>Нет данных для справки</h2>" );
+        }
     } catch (err) {
       console.log("Studing error", err.message);
       res.send({ Studing: [] });
@@ -93,12 +122,12 @@ router.get("/studing", async function (req, res, next) {
   
 router.post("/leave", async function (req, res, next) {
     try {
-      const { id_student } = req.body;
+      const { id_student } = req.query;
       const result = await reportService.leave(id_student);
-        res.send({ ReportsList: result });
+        return({ ...result, data: new Date().toLocaleDateString(), user: "Эрмеков Давлет" } );
     } catch (err) {
       console.log("Leave error", err.message);
-      res.send({ Leave: [] });
+      return({ Leave: [] });
     }
   
   });

@@ -1,0 +1,178 @@
+<link rel="stylesheet" href="/css/context.css" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/demand.css" />
+<link rel = "stylesheet" media = "print" href = "/css/myprint.css">
+<script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@gh-pages/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+<div class='D_main_header'>
+    <header>
+        <div class='SpravkaObOkonch_input'>
+            <input type="text" id="registerInput">
+            <button class="btnChange" id="registerChange">
+                <p>Изменить Регистрационный номер</p>
+            </button>
+        </div>
+        <h2>Академическая справка</h2>
+        <div class="none" style="padding:20px">
+            {{!-- 
+             --}}
+            <button onclick="myPrintFunction()" class="btnPrint">Печать</button>
+        </div>
+    </header>
+</div>
+
+    <div class="demand voenkom">
+            <div class="demand_top">
+                <div class="top-left" style="width: 140px;">
+                    <h2 class="top-left_title">
+                        {{
+                            obj.vuz.v2
+                        }}
+                    </h2>
+                    <p class="text_norm top-left_text">
+                        {{
+                            date
+                        }}
+                    </p>
+                    <p class="top_adr text_norm">
+                        {{
+                            obj.vuz.adres
+                        }}
+                    </p>
+                </div>
+                <div class="demand-top_left ml48">
+                    <h2 class="fs18t">
+                        МААЛЫМКАТ/СПРАВКА
+                    </h2>
+                    <h5 class="text-start">
+                        {{ obj.studInfo.BirthDate }}-жылы туулган чакырылуучуга берилген, себеби 2021-жылы
+                    </h5>
+                    <p class="text_norm text-start">
+                        Выдана призывнику {{ obj.studInfo.BirthDate }}г. рождения в том, что в 2021 году
+                    </p>
+                    <p class="text-norm borderB" style="margin: 0 auto    ;">
+                        {{
+                            obj.studInfo.s_fio
+                        }}
+                    </p>
+                </div>
+            </div>
+        <p class=" text-start">
+            Эл аралык билим берүү программаларынын жогорку мектеби
+        </p>
+        <p class="text_norm text-start">
+            Переведен в null, Высшая школа международных образовательных программ
+        </p>
+        <p class=" text-start">
+            2021-жылдын № 2766-О/21 -буйругу менен которулган (контракт)
+        </p>
+        <p class="text_norm text-start">
+            приказом № 2766-О/21 от 2021 г. (контракт)
+        </p>
+        <p class=" text-start">
+            жана азыркы убакта {{ obj.studInfo.id_rate }}-курста, {{ obj.studInfo.p20 }} тайпасында, күндүзгү бѳлүмүндѳ окуп жатат.
+        </p>
+        <p class="text_norm text-start">
+            в настоящее время обучается на {{ obj.studInfo.id_rate }}-курсе, группы {{ obj.studInfo.p20 }}, очного отделения.
+        </p>
+        <p class=" text-start">
+            Билим берүү мекемесинин лицензиясы {{ obj.license_spuz.kg }}.
+        </p>
+        <p class="text_norm text-start">
+            Лицензия образовательной организации {{ obj.license_spuz.ru }}.
+        </p>
+        <p class=" text-start">
+            Окуу жайын 2024-жылы аяктайт.
+        </p>
+        <p class="text_norm text-start">
+            Срок окончания учебного заведения: 2024 год.
+        </p>
+        <p class=" text-start">
+            Маалымкат {{
+                        obj.raion.raion_kg
+                    }} райондук (шаардык) аскер комиссариатына кѳрсѳтүү үчүн берилген.
+        </p>
+        <p class="text_norm text-start">
+            Справка выдана для предъявления в {{
+                        obj.raion.raion
+                    }} районный (городской) военный комиссариат.
+        </p>
+
+        <div class="footer_kadr signature">
+            <div class="footer_space">
+                <p class="footer_title">
+                    {{
+                        obj.pole1.insert_pole
+                    }}
+                </p>
+                <p class="footer_title text-start text_norm">
+                    {{
+                        obj.pole1.insert_pole_kg
+                    }}
+                </p>
+            </div>
+            <div class="footer_space">
+                <p class=" text_norm">_____________________</p>
+                <p class="footer_subtitle text_norm">
+                    (Ф.И.О.)
+                </p>
+            </div>
+        </div>
+
+        <div class="footer_kadr signature">
+            <div class="footer_space">
+                <p class="footer_title">
+                    {{
+                        obj.pole4.insert_pole
+                    }}
+                </p>
+                <p class="footer_title text-start text_norm">
+                    {{
+                        obj.pole4.insert_pole_kg
+                    }}
+                </p>
+            </div>
+            <div class="footer_space">
+                <p class=" text_norm">_____________________</p>
+                <p class="footer_subtitle text_norm">
+                    (Ф.И.О.)
+                </p>
+            </div>
+        </div>
+
+        <div class="footer_kadr signature">
+            <div class="footer_space">
+                <p class="footer_title text-start">
+                    {{
+                        obj.pole3.insert_pole_kg
+                    }}
+                </p>
+                <p class="footer_title text-start text_norm">
+                    {{
+                        obj.pole3.insert_pole_kg
+                    }}
+                </p>
+            </div>
+            <div class="footer_space">
+                <p class=" text_norm">_____________________</p>
+                <p class="footer_subtitle text_norm">
+                    (Ф.И.О.)
+                </p>
+            </div>
+        </div>
+        
+        <div class="qrvoenkom">
+            <div></div>
+            <div id="https://www.w3schools.com/tags/att_a_target.asp" class="qrcode"></div>
+            </div>
+            </div>
+        </div>
+
+       <script >
+        new QRCode(document.querySelector(".qrcode"), document.querySelector(".qrcode").id);
+        document.querySelector("#print").onclick = function() {
+            window.print();
+        }
+    </script>
+    <script src="/js/print.js"></script>
